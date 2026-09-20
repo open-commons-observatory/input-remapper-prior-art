@@ -1,26 +1,26 @@
 {
- "updated": "2026-09-20 01:49Z",
+ "updated": "2026-09-20 02:02Z",
  "repos": {
   "z1": {
    "kinds": {
     "issue": {
      "total": 1099,
      "by_status": {
-      "stub": 1027,
+      "stub": 907,
       "triaged": 0,
       "read": 0,
-      "analyzed": 72
+      "analyzed": 192
      },
      "by_depth": {
-      "title": 1027,
+      "title": 907,
       "thread": 0,
-      "full": 72,
+      "full": 192,
       "source": 0
      },
      "tagged_by": {
-      "none": 1027,
+      "none": 907,
       "heuristic": 0,
-      "manual": 72
+      "manual": 192
      }
     },
     "commit": {
@@ -54,21 +54,21 @@
   "issue": {
    "total": 1099,
    "by_status": {
-    "stub": 1027,
+    "stub": 907,
     "triaged": 0,
     "read": 0,
-    "analyzed": 72
+    "analyzed": 192
    },
    "by_depth": {
-    "title": 1027,
+    "title": 907,
     "thread": 0,
-    "full": 72,
+    "full": 192,
     "source": 0
    },
    "tagged_by": {
-    "none": 1027,
+    "none": 907,
     "heuristic": 0,
-    "manual": 72
+    "manual": 192
    }
   },
   "commit": {

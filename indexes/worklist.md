@@ -7,62 +7,62 @@
 - [#31](../records/issues/0031.md) draft: try to package as Flatpak
 - [#45](../records/issues/0045.md) Add systemctl enable for PIP install
 - [#82](../records/issues/0082.md) Draft: first try to debianize
-- [#90](../records/issues/0090.md) Helper to find symbol names and combinations
-- [#91](../records/issues/0091.md) Support for keyboard layers
 - [#92](../records/issues/0092.md) Filter Eee hotkeys (wifi controls, backlight, leds..)
-- [#93](../records/issues/0093.md) Unable to configure devices with the same name independently
-- [#94](../records/issues/0094.md) Key-Mapper Settings Not Persistent
-- [#95](../records/issues/0095.md) Mapping templates
-- [#98](../records/issues/0098.md) key-mapper-git: /lib è già presente nel filesystem (appartiene a filesystem)
-- [#99](../records/issues/0099.md) Feature Request: mouse speed adjustment
-- [#100](../records/issues/0100.md) Feature Request: Distinction between mouse press and mouse release.
-- [#101](../records/issues/0101.md) unicode macro
-- [#102](../records/issues/0102.md) Joystick emulating mouse is not detected
-- [#103](../records/issues/0103.md) Mouse button mapping issues
-- [#104](../records/issues/0104.md) Toggle on/off script needed
 - [#106](../records/issues/0106.md) Add GObject dependencies to setup.py
-- [#107](../records/issues/0107.md) Autoload function not working
-- [#109](../records/issues/0109.md) Macro editor
-- [#110](../records/issues/0110.md) Xinput plugin
-- [#112](../records/issues/0112.md) Cannot generate Mouse Button Events
-- [#114](../records/issues/0114.md) xmodmap on wayland
-- [#115](../records/issues/0115.md) Improve README - add note regarding policykit
-- [#116](../records/issues/0116.md) Notification for device being added/removed/mapped
-- [#117](../records/issues/0117.md) Fails to run without policykit?
-- [#118](../records/issues/0118.md) How to edit pressed key without injecting
-- [#120](../records/issues/0120.md) Tap and Hold binding for same button?
 - [#121](../records/issues/0121.md) Halt waits in h() when key is released - enables different actions depending on 
-- [#122](../records/issues/0122.md) rc-service key-mapper start - rc-service: service `key-mapper' does not exist
-- [#123](../records/issues/0123.md) Multiple devices with same name share the same macros
-- [#124](../records/issues/0124.md) Feature request: trackball scroll wheel emulation
-- [#125](../records/issues/0125.md) Cursor not moving in postmarketos
-- [#126](../records/issues/0126.md) How to map ctrl hjkl as arrow keys
 - [#127](../records/issues/0127.md) Extended docs by foot pedals and keyboard scroll
-- [#128](../records/issues/0128.md) Framedrops in games for couple of seconds during injection
 - [#129](../records/issues/0129.md) Add initial i18n support
 - [#130](../records/issues/0130.md) Add Slovak translation
-- [#131](../records/issues/0131.md) Only keys that are assigned a mapping work as intended after injection, others a
 - [#132](../records/issues/0132.md) Debug argument help can now be translated, add .pot template
-- [#135](../records/issues/0135.md) Document mapping field
-- [#136](../records/issues/0136.md) Adding mappings by hitting the output key/combination on any device
 - [#137](../records/issues/0137.md) Improve documentation mapping, fixes #135
-- [#140](../records/issues/0140.md) key-mapper freezes external usb mouse and keyboard
 - [#141](../records/issues/0141.md) Create it_IT.po
-- [#142](../records/issues/0142.md) Won't Install
 - [#143](../records/issues/0143.md) fix typo in it_IT.po
-- [#144](../records/issues/0144.md) Cursor focus not detected with key-mapper
-- [#145](../records/issues/0145.md) XCompose being ignored
-- [#146](../records/issues/0146.md) Restrict mappings to specific applications
-- [#147](../records/issues/0147.md) Help wanted from people who know X/Gnome/Wayland/KDE internals
-- [#148](../records/issues/0148.md) Razer DeathAdder Elite Mapping Issues
 - [#149](../records/issues/0149.md) Update it_IT.po
-- [#150](../records/issues/0150.md) gettext dependency missing for the ubuntu/debian build
-- [#151](../records/issues/0151.md) missing macro info ? coming back from #104
-- [#152](../records/issues/0152.md) Layout is changed on Apply
-- [#153](../records/issues/0153.md) How to macro an autofire
-- [#154](../records/issues/0154.md) Autoload doesn't seem to work, but apply works fine
-- [#155](../records/issues/0155.md) Key mapping not working, nothing happens
-- [#159](../records/issues/0159.md) [Req] Priority setting / Ordering precedence of mappings
+- [#167](../records/issues/0167.md) Use $HOME environment variable to find user's home.
+- [#168](../records/issues/0168.md) Led test
+- [#174](../records/issues/0174.md) Update README.md
+- [#178](../records/issues/0178.md) Use the appropriate user home directory.
+- [#182](../records/issues/0182.md) minor: fix grammar with logging error
+- [#219](../records/issues/0219.md) allow autoload command to execute if `config_dir` is provided
+- [#228](../records/issues/0228.md) Independent uinput
+- [#230](../records/issues/0230.md) Independent uinput proposals
+- [#232](../records/issues/0232.md) Refactored Migrations
+- [#239](../records/issues/0239.md) Renamed to Input Remapper
+- [#257](../records/issues/0257.md) the ui no longer records keycodes if the preset is active
+- [#263](../records/issues/0263.md) Refactored injection
+- [#264](../records/issues/0264.md) Use tempfiles instead of hardcoded /tmp
+- [#265](../records/issues/0265.md) Use non-zero exit code if tests fail
+- [#267](../records/issues/0267.md) Add github actions workflows
+- [#275](../records/issues/0275.md) Renaming and minor stuff
+- [#277](../records/issues/0277.md) fixes bug #276
+- [#279](../records/issues/0279.md) fix python 3.8 compatability #278
+- [#280](../records/issues/0280.md) fix compatability with python 3.8 #278
+- [#284](../records/issues/0284.md) Show error in the gui if target cannot handle the macro
+- [#285](../records/issues/0285.md) Add Slovak translation for polkit message.
+- [#286](../records/issues/0286.md) Style: Remove extra comma in the DEBIAN control file
+- [#287](../records/issues/0287.md) Remap modifiers when released only (keeping its function untouched)
+- [#288](../records/issues/0288.md) Improve i18n
+- [#289](../records/issues/0289.md) Update Slovak translation.
+- [#290](../records/issues/0290.md) Debounce syntax check while typing macro
+- [#291](../records/issues/0291.md) Changed otherwise to else in macros, added migration
+- [#292](../records/issues/0292.md) Key acting normally if pressed alone, as modifier if combined
+- [#295](../records/issues/0295.md) Looks like part of the text is missing in usage.md
+- [#296](../records/issues/0296.md) keys get stuck when profile is changed while being held
+- [#297](../records/issues/0297.md) Disable/Grey-out buttons that can (currently) not be used
+- [#298](../records/issues/0298.md) Greying out the key recording toggle
+- [#299](../records/issues/0299.md) keymap with Alt_L not working
+- [#300](../records/issues/0300.md) slow reaction when hitting key combination
+- [#301](../records/issues/0301.md) Command for "right_arrow" key
+- [#302](../records/issues/0302.md) mouse acceleration being enabled with injection
+- [#303](../records/issues/0303.md) Control L + Left as Home not working
+- [#306](../records/issues/0306.md) Some tests can fail under high CPU load
+- [#307](../records/issues/0307.md) Feature: Compatability with Karabiner-Elements?
+- [#308](../records/issues/0308.md) Quotation Marks
+- [#309](../records/issues/0309.md) Complex remaps with capslock key?
+- [#310](../records/issues/0310.md) Macros consisting of multiple devices
+- [#311](../records/issues/0311.md) Can't remap PS/2 to USB adapted keyboard. 
+- [#312](../records/issues/0312.md) combination macro
+- [#314](../records/issues/0314.md) Mapping to " " caused problems, general test improvements
 
 ## commits
 
