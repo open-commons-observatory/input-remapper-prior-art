@@ -1,0 +1,27 @@
+# Round 5: issues #61-#74 (12 issues), dates 2021-03-16 to 2021-03-29
+# Method: full thread read via API (readfull --q 400 --users 150 --min 60 --cap 600)
+# All depth=full; tags manual.
+
+i61 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:fixed pr_potential:unknown conf:stated depth=full | Request to duplicate presets. Maintainer implemented Ctrl+click on New button; released in 0.7.1.
+
+i64 | - | kind:bug layer:reader cause:device-quirk device_type:mouse outcome:wontfix pr_potential:upstream-dep conf:stated impact:broken-remap symptom:device-not-detected depth=full | Continuation of #60: Hypershift button on Basilisk V2. Reporter found a different firmware profile where the button sends RIGHTCTRL. Resolved via firmware profile selection; not a key-mapper fix.
+
+i65 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:fixed pr_potential:unknown conf:stated depth=full | UI improvement requests: about popup, keyboard shortcuts, auto-save on apply, save-button improvements, delete confirmation. Maintainer implemented all requested items over several days.
+
+i66 | - | kind:bug layer:injector cause:device-quirk component:injector device_type:keyboard outcome:workaround pr_potential:code-fix conf:inferred impact:broken-remap depth=full | UInput device name too long (>80 chars) for Microsoft 2.4GHz Transceiver v9.0. Reported then self-resolved. PR potential: truncate device names to 80 chars in uinput creation.
+
+i67 | - | kind:feature-request layer:config cause:missing-feature outcome:fixed pr_potential:unknown conf:stated depth=full | Request for --version CLI argument. Already implemented on a branch about to be released.
+
+i68 | - | kind:question layer:mapping cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Request to disable/reserve a key as a pure modifier (caps lock as modifier, no default action). Maintainer pointed to "disable" mapping option in docs. UI discoverability gap: "disable" keyword not obvious, searching for "ignore" or "no key" didn't work.
+
+i69 | - | kind:question layer:gui cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated impact:ui-bug symptom:mapping-not-working depth=full | Keys not detected in UI after first Apply. Root cause: injection was active, so the device was grabbed. Must use Restore Defaults to temporarily release the grab. Documented in usage.md but UI could be clearer.
+
+i70 | - | kind:meta cause:doc-gap outcome:unknown pr_potential:unknown conf:inferred depth=full | External contributor shared a related project (evdevremapkeys) with potentially helpful patterns: static binary building, systemd user service, and udev uaccess rules for device permissions.
+
+i71 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:fixed pr_potential:unknown conf:stated depth=full | Request for i18n/translation support. Maintainer deferred to after 1.0.0; community member contributed gettext setup but it stalled. Eventually added.
+
+i72 | - | kind:feature-request layer:mapping layer:daemon cause:missing-feature component:service outcome:workaround pr_potential:needs-design conf:stated depth=full | Request for preset switching via mapping (layers). Maintainer explained slowness and key-stuck risk of mid-use preset change. Workaround: use CLI + desktop keyboard shortcuts for infrequent switching; or use set/ifeq macros for in-macro layer simulation.
+
+i73 | - | kind:bug layer:device layer:reader cause:device-quirk component:reader device_type:gamepad outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:device-not-detected depth=full | VR controller (EGV101) over Bluetooth: most buttons not detected in UI due to mode-switching changing device capabilities on the fly. Multiple debug rounds. Fixed via branch joystick-correct-abs-range and merged to main.
+
+i74 | - | kind:bug layer:device layer:injector cause:device-quirk component:injector device_type:gamepad outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | 8BitDo SN30 Pro+ gamepad joystick-as-mouse not working; then after fix, only moved right/down (left/up ignored). Root: abs range handling bug and sign inversion. Fixed in joystick-correct-abs-range branch.
