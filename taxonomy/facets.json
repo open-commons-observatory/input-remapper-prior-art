@@ -70,7 +70,8 @@
     "macro-logic": "bug in macro expression parsing or execution",
     "combination-logic": "key combination detection or matching defect",
     "ui-logic": "GTK UI logic or state management defect",
-    "symbol-mapping": "wrong or missing keysym, evdev type or code"
+    "symbol-mapping": "wrong or missing keysym, evdev type or code",
+    "autoload-failure": "device plug/unplug autoloading of presets not working (very common cluster)"
    }
   },
   "component": {
@@ -111,11 +112,12 @@
     "xfce": "XFCE",
     "sway": "Sway / wlroots compositor",
     "ubuntu": "Ubuntu or Debian",
-    "arch": "Arch Linux or Manjaro",
+    "arch": "Arch Linux / Manjaro (was already there — confirm present)",
     "fedora": "Fedora or RHEL",
     "nixos": "NixOS",
     "opensuse": "openSUSE",
-    "any": "any / not specified"
+    "any": "any / not specified",
+    "openrc": "OpenRC init system (Gentoo, Alpine, Artix)"
    }
   },
   "outcome": {
