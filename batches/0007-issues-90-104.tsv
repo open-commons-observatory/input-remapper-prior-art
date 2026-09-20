@@ -1,0 +1,27 @@
+# Round 7: issues #90-#104 (12 issues), dates 2021-04-12 to 2021-04-24
+# Method: fullfetch+readfull per-round; --q 350 --users 100 --min 60 --cap 550
+# All depth=full; tags manual.
+
+i90 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:open pr_potential:code-fix conf:inferred depth=full | Design note: a helper tab to look up symbol names and macro syntax (e.g. enter a character, get all key names and m()/+ syntax). Proposed for the about/help popup.
+
+i91 | - | kind:feature-request layer:mapping layer:macro cause:missing-feature component:macros outcome:workaround pr_potential:needs-design conf:stated depth=full | Keyboard layers: toggle a key to switch between two key layouts (e.g. right-alt enables numpad). Closed as duplicate of #72. Workaround via set+ifeq macros demonstrated by maintainer. UI design for layers discussed but not implemented.
+
+i93 | - | kind:bug layer:device layer:config cause:device-quirk component:reader component:service outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:device-not-detected depth=full | Two identical gamepads (SPEEDLINK TORID) with separate USB receivers shown as one device in the UI. Root: device deduplication used only name, not physical path. Fixed in getdevices-duplicate-2 branch by adding device.phys to the identity; presets shared by model name, autoload differentiated by physical path.
+
+i94 | - | kind:question layer:daemon cause:doc-gap de_os:gnome de_os:arch outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Settings not persisting after reboot on Manjaro+GNOME+Wayland. User had not enabled the Autoload toggle. Classic onboarding gap; the UI could make autoload more discoverable on first use.
+
+i95 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:open pr_potential:code-fix conf:inferred depth=full | Mapping templates: pre-defined groups of commonly used key assignments (WASD, arrow keys, numpad) selectable from a dropdown. Maintainer noted this could be a small popup window in the new beta GUI.
+
+i98 | - | kind:bug layer:install cause:distro-compat component:ci-build de_os:arch outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | AUR package: /lib already present in filesystem (Arch symlink conflict). Maintainer pushed fix; confirmed resolved.
+
+i99 | - | kind:feature-request layer:injector cause:missing-feature component:injector device_type:mouse outcome:fixed pr_potential:unknown conf:stated depth=full | Mouse speed/sensitivity adjustment and custom acceleration profiles. Maintainer noted it was possible but deferred. Implemented in beta branch as RelToRelHandler with configurable sensitivity and acceleration profiles.
+
+i100 | - | kind:question layer:macro cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to map mouse button press and release separately. Maintainer explained m(a, h()).k(b) syntax: m injects key-down, h() holds until release, k(b) fires on release. Also noted that context-menu release behavior is GTK/Qt responsibility, not key-mapper's.
+
+i101 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:wontfix pr_potential:wontfix conf:stated depth=full | Unicode input macro (Ctrl+Shift+U+hex). Maintainer showed it was technically doable but declined: application-dependent behavior (breaks in IntelliJ), not a general solution.
+
+i102 | - | kind:bug layer:reader cause:missing-feature cause:device-quirk component:reader device_type:mouse outcome:open pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Presentation remote joystick (EV_REL mouse movement) not detectable in key-mapper. Same root as #79: mouse movement (REL) events not yet mappable in this version. Resolved later in beta.
+
+i103 | - | kind:bug layer:reader cause:device-quirk cause:unknown component:reader device_type:mouse outcome:fixed pr_potential:unknown conf:inferred impact:broken-remap symptom:mapping-not-working depth=full | Side mouse button not mapping unless another button held first. Resolved by installing third-party Razer drivers; device reported events differently without them.
+
+i104 | - | kind:question layer:daemon cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to toggle injection on/off via CLI shortcut. Maintainer pointed to CLI docs (key-mapper-control --command stop/autoload). User solved with desktop keyboard shortcut. Also: cross-device combinations (keyboard + trackpad) noted as not yet supported (then added in a later update via macros spanning multiple devices).
