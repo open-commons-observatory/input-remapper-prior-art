@@ -1,0 +1,13 @@
+name: validate
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.x'}
+      - name: Validate every record against the taxonomy
+        run: python tools/pz.py validate
+      - name: Batches are replayable (syntax and vocabulary check)
+        run: python -c "import glob,sys; sys.path.insert(0,'tools'); import pz; t=pz.load_tax(); c=pz.load_classes(); bad=[e for f in sorted(glob.glob('batches/*.tsv')) for e in pz.parse_batch(f,t,c)[1]]; print('\\n'.join(bad)); sys.exit(1 if bad else 0)"
