@@ -1,0 +1,27 @@
+# Round 4: issues #44-#60 (12 issues), dates 2021-02-19 to 2021-03-15
+# Method: full thread read via API (readfull --q 400 --users 150 --min 60 --cap 600)
+# All depth=full; tags manual.
+
+i44 | - | kind:bug layer:gui cause:ui-logic component:gui-app de_os:fedora outcome:fixed pr_potential:unknown conf:stated impact:ui-bug symptom:gui-crash depth=full | UI bug on Fedora/KDE main branch: Add mapping row button disappeared after first remap. Not reproducible by the end; maintainer added extra guard logic for consistency checking.
+
+i46 | - | kind:bug layer:injector layer:macro cause:macro-logic component:macros device_type:gamepad outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:key-stuck depth=full | Razer Tartarus V2 on Manjaro with OpenRazer: mapped macro kept key pressed after button release (key-up not triggered). Maintainer pushed fix; workaround was to use m(ctrl, k(v)) syntax instead of combination syntax.
+
+i47 | - | kind:bug layer:macro layer:injector cause:macro-logic component:macros de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:key-stuck depth=full | REL_HWHEEL mapped to super+next/prior: scroll continued repeating after mouse button release. Root: early 0.7.0 release had a fix not yet in the .deb; installing the re-released .deb resolved it. Scroll-event release behavior issue.
+
+i48 | - | kind:bug layer:daemon cause:distro-compat component:service de_os:arch outcome:workaround pr_potential:docs-fix conf:stated symptom:daemon-not-starting depth=full | AUR install: systemd service failed at install time because D-Bus had not restarted yet. Maintainer noted rebooting resolves it (D-Bus restart) and that the service waits for autoload commands anyway. Docs gap: add reboot-or-restart-dbus note to AUR/post-install instructions.
+
+i49 | - | kind:feature-request layer:macro layer:combination cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:lag depth=full | Request for space-as-modifier: Space=Space when tapped but Space+J=Left etc. when combined. Complex feature; maintainer explained architectural difficulty. Eventually solved via set/ifeq macros and later if_single. Also: input lag reported with macro injection on Ubuntu 5.8 kernel; not reproducible by maintainer on same kernel.
+
+i50 | - | kind:feature-request layer:mapping cause:missing-feature cause:wayland-issue outcome:open pr_potential:needs-design conf:stated depth=full | Request for focus-dependent preset switching. Same Wayland limitation as #32: window focus not accessible via Wayland. Wontfix for Wayland; possible with X11 workarounds.
+
+i53 | - | kind:bug layer:daemon cause:regression component:service de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated symptom:daemon-not-starting depth=full | Ubuntu 20.04: system error dialog on login due to a crash in the service. Maintainer pushed fix to main; not yet in the 0.7.0 .deb release. Regression in startup handling.
+
+i56 | - | kind:question layer:mapping cause:doc-gap cause:wayland-issue outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to switch presets per focused application? Maintainer confirmed not possible on Wayland; pointed to CLI docs. Docs gap: FAQ entry for Wayland limitation on per-app presets.
+
+i57 | - | kind:bug layer:daemon layer:device cause:autoload-failure component:service outcome:open pr_potential:unknown conf:inferred depth=full | Mappings not reapplied when device is unplugged and replugged. Reporter updated to 0.7.0 to check; no follow-up. Autoload-on-reconnect behavior was supposed to be addressed in 0.7.0 udev fix; edge case may remain.
+
+i58 | - | kind:bug layer:reader layer:device cause:de-compat cause:device-quirk device_type:keyboard outcome:workaround pr_potential:unknown conf:inferred depth=full | Apple keyboard left Super key not detected in UI; right Super worked. Root cause: conflict with GNOME Tweaks settings intercepting the key before evdev. Separately: all keys stopped working intermittently after applying mapping. User reported Tweaks fix resolved both.
+
+i59 | - | kind:bug layer:injector layer:macro cause:macro-logic cause:symbol-mapping component:macros component:injector outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:key-stuck depth=full | Keys stuck/repeating after injection: mapped key kept sending repeat events. Maintainer pushed fix to main. Side discussion: writing characters from a non-default keyboard layout requires xkb work; workaround with setxkbmap layout switching explored but not implemented.
+
+i60 | - | kind:bug layer:reader cause:device-quirk device_type:mouse outcome:wontfix pr_potential:upstream-dep conf:stated impact:broken-remap symptom:device-not-detected depth=full | Razer Basilisk V2 Hypershift button not detected in key-mapper. Root cause: Hypershift is a firmware-level feature; the button doesn't send an evdev event to the OS. Cannot be mapped. Resolved by switching to a different firmware profile that sends standard events.
