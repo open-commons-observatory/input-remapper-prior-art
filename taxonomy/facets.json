@@ -1,0 +1,191 @@
+{
+ "_doc": "Controlled vocabulary for input-remapper issue analysis. Generic facets (kind, ctype, outcome, conf, os, impact) transfer from the playbook starter. Domain facets (layer, cause, component, device_type, de_os, pr_potential, symptom) are input-remapper-specific. Review after reading the first 100 issue titles (P05 evolve step).",
+ "facets": {
+  "kind": {
+   "multi": false,
+   "doc": "What the issue is",
+   "values": {
+    "bug": "defect in input-remapper",
+    "regression": "used to work, broke after a code or system update",
+    "feature-request": "asks for new behaviour that does not exist",
+    "question": "asks how something works (usage, config, keysyms)",
+    "support": "install, setup or troubleshooting help",
+    "docs": "documentation gap, error or typo",
+    "security": "security or trust concern",
+    "meta": "about the project itself (governance, naming, packaging)",
+    "spam": "noise, off-topic, duplicate, empty or test issue"
+   }
+  },
+  "ctype": {
+   "multi": false,
+   "doc": "What a commit is",
+   "values": {
+    "feature": "new behaviour added",
+    "fix": "bug or regression fix",
+    "docs": "documentation only",
+    "build": "build system, packaging, CI",
+    "maintenance": "merges, version bumps, housekeeping",
+    "refactor": "code restructure, no behaviour change",
+    "test": "tests only",
+    "release": "release preparation"
+   }
+  },
+  "layer": {
+   "multi": true,
+   "doc": "Where in the system the problem sits",
+   "values": {
+    "daemon": "input-remapper-service background process",
+    "gui": "GTK configuration UI",
+    "reader": "event reader (reads raw events from input devices via evdev)",
+    "injector": "event injector (writes events to virtual uinput device)",
+    "mapping": "mapping and preset logic (translates one event to another)",
+    "macro": "macro engine (sequences, variables, if/wait expressions)",
+    "combination": "key combination detection and matching",
+    "config": "configuration and preset files (storage, migration, format)",
+    "device": "device detection, discovery and enumeration",
+    "permissions": "udev rules, uinput access, group membership, capabilities",
+    "install": "packaging, service registration, system-level setup",
+    "docs": "documentation only (README, wiki, in-app hints)"
+   }
+  },
+  "cause": {
+   "multi": true,
+   "doc": "Root cause — use unknown when not established; grow this list as you read",
+   "values": {
+    "unknown": "not established",
+    "config-error": "wrong user configuration",
+    "regression": "broke after a code change in input-remapper",
+    "wayland-issue": "Wayland-specific behaviour or missing protocol support",
+    "x11-issue": "X11-specific behaviour (XInput, XTest, XKB)",
+    "de-compat": "desktop environment compatibility (KDE, GNOME, XFCE quirk)",
+    "device-quirk": "non-standard or undocumented device behaviour",
+    "permission": "missing udev rules, uinput device access, group membership",
+    "evdev-api": "evdev API usage or kernel evdev behaviour",
+    "uinput-api": "uinput API usage or virtual device handling",
+    "python-version": "Python version incompatibility or dependency version",
+    "race-condition": "timing or ordering issue in daemon or reader",
+    "missing-feature": "requested functionality does not exist (feeds feature-request kind)",
+    "doc-gap": "documentation missing, wrong or misleading",
+    "distro-compat": "distro-specific packaging, init system or path issue",
+    "macro-logic": "bug in macro expression parsing or execution",
+    "combination-logic": "key combination detection or matching defect",
+    "ui-logic": "GTK UI logic or state management defect",
+    "symbol-mapping": "wrong or missing keysym, evdev type or code"
+   }
+  },
+  "component": {
+   "multi": true,
+   "doc": "Which component of input-remapper",
+   "values": {
+    "service": "input-remapper-service (systemd unit)",
+    "gui-app": "input-remapper-gtk (GTK application)",
+    "reader": "InputReader / EventReader",
+    "injector": "Injector / InputInjector",
+    "macros": "macro runner and parser",
+    "presets": "preset / config manager",
+    "keycodes": "key symbol and code lookup (input_remapper.configs.input_config)",
+    "udev": "udev rules and device groups",
+    "ci-build": "CI, packaging, Makefile"
+   }
+  },
+  "device_type": {
+   "multi": true,
+   "doc": "What type of input device is involved",
+   "values": {
+    "keyboard": "physical keyboard",
+    "mouse": "mouse or trackpad",
+    "gamepad": "gamepad or controller",
+    "joystick": "joystick (may overlap with gamepad)",
+    "tablet": "graphics tablet or stylus",
+    "other": "other or unspecified input device"
+   }
+  },
+  "de_os": {
+   "multi": true,
+   "doc": "Desktop environment or distro involved",
+   "values": {
+    "x11": "X11 / Xorg session",
+    "wayland": "Wayland session (any compositor)",
+    "kde": "KDE Plasma",
+    "gnome": "GNOME Shell",
+    "xfce": "XFCE",
+    "sway": "Sway / wlroots compositor",
+    "ubuntu": "Ubuntu or Debian",
+    "arch": "Arch Linux or Manjaro",
+    "fedora": "Fedora or RHEL",
+    "nixos": "NixOS",
+    "opensuse": "openSUSE",
+    "any": "any / not specified"
+   }
+  },
+  "outcome": {
+   "multi": false,
+   "doc": "How the issue ended",
+   "values": {
+    "fixed": "fixed in a code or docs commit",
+    "workaround": "a workaround was given or found",
+    "wontfix": "declined by the maintainer",
+    "not-a-bug": "working as designed",
+    "docs-answer": "answered by pointing to existing docs",
+    "duplicate": "closed as duplicate of another issue",
+    "open": "still open and active",
+    "stale": "open but long inactive (no activity 6+ months)",
+    "unknown": "no visible resolution or conclusion"
+   }
+  },
+  "pr_potential": {
+   "multi": false,
+   "doc": "Actionability: how likely a PR could close this. Filled after reading; assessed for the current state of the fork (grenudi/input-remapper). This facet is the bridge between the dataset and the contribution plan.",
+   "values": {
+    "code-fix": "a targeted code change would close it (small to medium effort)",
+    "docs-fix": "a documentation update or in-app hint would close it",
+    "needs-design": "needs architectural discussion or maintainer buy-in before a PR",
+    "upstream-dep": "root cause is upstream (kernel, evdev, GTK, Wayland protocol); fix requires upstream change",
+    "close-duplicate": "should be closed as duplicate; no code needed",
+    "wontfix": "maintainer would likely decline; not actionable",
+    "unknown": "not yet assessed"
+   }
+  },
+  "conf": {
+   "multi": false,
+   "doc": "Confidence of the root cause",
+   "values": {
+    "stated": "maintainer said",
+    "reported": "reporter said",
+    "inferred": "my reading"
+   }
+  },
+  "impact": {
+   "multi": true,
+   "doc": "Effect on the user",
+   "values": {
+    "broken-remap": "remapping has no effect at all",
+    "partial-remap": "remapping works sometimes, in some conditions, or partially",
+    "crash": "daemon or GUI crashes or hangs",
+    "install-blocked": "cannot install, start, or enable the service",
+    "perf": "input lag, CPU use or resource problem",
+    "ui-bug": "GUI cosmetic or workflow problem (does not affect remapping itself)",
+    "na": "not applicable"
+   }
+  },
+  "symptom": {
+   "multi": true,
+   "doc": "What the reporter observed — weak labels derived from text; a search aid, not a diagnosis",
+   "values": {
+    "mapping-not-working": "remapping or injection has no visible effect",
+    "key-stuck": "key stays pressed or repeats unexpectedly",
+    "daemon-not-starting": "input-remapper-service will not start or exits immediately",
+    "gui-crash": "the GTK UI crashes, freezes or fails to open",
+    "permission-error": "permission denied accessing uinput or device node",
+    "wrong-output": "wrong key, button or axis value is emitted",
+    "combination-not-firing": "a key combination does not trigger as configured",
+    "macro-error": "macro fails to parse or execute",
+    "device-not-detected": "the input device does not appear in the UI or reader",
+    "lag": "noticeable input lag or delay",
+    "install-fail": "installation, pip install or package manager step fails",
+    "wayland-broken": "works on X11 but broken or not functional on Wayland",
+    "service-unit-issue": "systemd service file, enable/disable or autostart problem"
+   }
+  }
+ }
+}
