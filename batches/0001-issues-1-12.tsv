@@ -1,0 +1,27 @@
+# Round 1: issues #1-#12, dates 2020-12-05 to 2020-12-31 (project launch period)
+# Method: full thread read via API (readfull --q 400 --users 200 --min 60 --cap 700)
+# All depth=full; tags manual.
+
+i1 | - | kind:support layer:install cause:distro-compat component:ci-build de_os:arch outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | AUR packaging crash at startup due to python-evdev/rich library version mismatch on Manjaro; maintainer pushed a fix the same day.
+
+i2 | - | kind:bug layer:install layer:permissions cause:distro-compat cause:permission component:service de_os:arch outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail symptom:daemon-not-starting depth=full | AUR install failed because plugdev group did not exist on some Manjaro configs; maintainer patched service to handle missing group. Also contains an early feature request for gamepad axis mapping.
+
+i3 | - | kind:feature-request layer:install cause:missing-feature outcome:wontfix pr_potential:wontfix conf:stated depth=full | Request for Windows support. Maintainer declined: no test capacity; python-evdev has no Windows equivalent; pynput lacks gamepad and Wayland support.
+
+i4 | - | kind:feature-request layer:daemon layer:config cause:missing-feature component:service outcome:fixed pr_potential:unknown conf:stated depth=full | Request for tty/non-GUI mode. Maintainer stated it was achievable; implemented CLI via key-mapper-control and D-Bus in 0.4.0. Side discussion of X11 xmodmap for cedilla layout.
+
+i5 | - | kind:support layer:install cause:distro-compat cause:doc-gap component:ci-build de_os:ubuntu outcome:workaround pr_potential:docs-fix conf:stated impact:install-blocked symptom:install-fail depth=full | Pop!_OS install failed: python3-evdev not pulled as a dependency. Resolved with apt -f install. Maintainer said README would be updated. PR potential: dependency note in README.
+
+i6 | - | kind:bug layer:install layer:device layer:injector cause:distro-compat cause:device-quirk component:service component:injector device_type:gamepad outcome:fixed pr_potential:unknown conf:stated impact:install-blocked impact:broken-remap symptom:install-fail symptom:mapping-not-working depth=full | MX Linux (sysv init): deb install required systemd; fixed. Separately: Steam controller both triggers mapped to BTN_LEFT so could not be remapped individually; maintainer explained the limitation, provided a manual config workaround.
+
+i7 | - | kind:bug layer:install layer:gui layer:daemon cause:distro-compat component:gui-app component:service de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:daemon-not-starting depth=full | Elementary OS: GUI injection failed when launched from app menu. Root cause: pkexec + os.getlogin() failed on Elementary. Maintainer pushed fixes for polkit, getlogin, and .desktop entry. Includes discussion of key combinations (not yet implemented at that time).
+
+i8 | - | kind:bug layer:daemon layer:config cause:autoload-failure cause:de-compat component:service de_os:arch de_os:gnome outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working symptom:service-unit-issue depth=full | Mappings not surviving reboot on Manjaro GNOME. Three overlapping bugs: service not enabled by installer, config.json path-resolution corruption, and GNOME autostart .desktop missing Type=Application (silent failure). All three fixed.
+
+i9 | - | kind:bug layer:gui cause:de-compat component:gui-app de_os:gnome de_os:arch outcome:unknown pr_potential:wontfix conf:inferred impact:ui-bug depth=full | Dark theme (Prof-Gnome-Dark) no longer applied to GUI after 0.4.0 on Manjaro. Maintainer could not reproduce; reporter attributed it to their own theme setup. Closed without fix.
+
+i10 | - | kind:bug layer:gui layer:combination cause:combination-logic cause:ui-logic component:gui-app outcome:fixed pr_potential:unknown conf:stated impact:partial-remap impact:ui-bug symptom:combination-not-firing symptom:gui-crash depth=full | GUI freezes on Arch (no error, just unresponsive). User also wanted Capslock+vim key combinations which were not yet implemented. Maintainer implemented combinations in 0.5.0; freeze symptom carried in title without a specific code fix logged.
+
+i11 | - | kind:question layer:install cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:inferred depth=full | Empty issue body; user wanted to know how to uninstall. Maintainer replied with removal commands for apt, pacman, pip. Documentation gap.
+
+i12 | - | kind:bug layer:reader layer:injector cause:missing-feature cause:device-quirk component:reader component:injector device_type:mouse outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Mouse buttons 6 and 7 (horizontal scroll wheel) send EV_REL/REL_HWHEEL, not EV_KEY; key-mapper could not map them. Maintainer implemented scroll event mapping in wheel-attempt-2 branch, released in 0.6.0.
