@@ -1,0 +1,27 @@
+# Round 11: issues #170-#185 (12 issues), dates 2021-08-19 to 2021-09-18
+# Method: fullfetch per-round + readfull --q 350 --users 100 --min 60 --cap 550
+# All depth=full; tags manual.
+
+i170 | - | kind:bug layer:install cause:distro-compat component:ci-build de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | Missing libgtk-3-0 dependency in deb; only libgtk-3-dev was listed. Most users had it already. Fixed by adding libgtk-3-0 to DEBIAN/control in 1.1.0.
+
+i171 | - | kind:bug layer:install cause:distro-compat de_os:fedora outcome:workaround pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | Fedora: pip install failed because python3-devel (C headers) not installed, blocking evdev compilation. Also: setup.py installs to site-packages path not found by systemd service. Multiple reporters. Workaround: install python3-devel first, or use python3-evdev RPM package. Root cause: no official RPM package.
+
+i172 | - | kind:bug layer:install layer:daemon cause:distro-compat component:service de_os:ubuntu outcome:unknown pr_potential:unknown conf:inferred impact:install-blocked symptom:daemon-not-starting depth=full | Pop!_OS 21.04: systemd service file not found at install time. Maintainer's debug path was systemctl daemon-reload; one reporter resolved by switching to Arch; another resolved by reinstalling without conda environment.
+
+i173 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:open pr_potential:code-fix conf:stated depth=full | text() macro: type a string of characters instead of k(a).k(b).k(c)... Maintainer pointed to where to contribute; partial implementation notes. PR potential: add text() macro function with simple ASCII support.
+
+i175 | - | kind:question layer:reader cause:doc-gap device_type:mouse outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Razer DeathAdder Chroma wheel click not mappable. Resolved: user had injection active; needed to click Restore Defaults first before the GUI could detect button presses. Recurring docs gap.
+
+i176 | - | kind:feature-request layer:macro layer:injector cause:missing-feature component:macros outcome:open pr_potential:code-fix conf:stated depth=full | release() macro: release a modifier that was forwarded before a combination triggers. Design discussion. Workaround: k(modifier).h(char) pattern works in practice.
+
+i177 | - | kind:meta cause:missing-feature outcome:open pr_potential:unknown conf:inferred depth=full | Help wanted document: lists ways to contribute (answer discussions, translations, provide a device for testing, help with X11/GNOME internals). Meta issue.
+
+i180 | - | kind:question layer:mapping cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to remap a broken physical key: user confused direction (mapping TO a broken key is impossible; mapping FROM a broken key via another device is possible). Docs gap: direction of remapping not clearly stated.
+
+i181 | - | kind:bug layer:install cause:distro-compat cause:permission de_os:fedora outcome:workaround pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | Fedora 34: pip install evdev fails without python3-devel. Also: setup.py installs service file to wrong path on Fedora (not found by systemd). Multiple reporters. Community workaround: install python3-devel, then pip3 install evdev. Upstream python-evdev also has no Fedora maintainer.
+
+i183 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Space Cadet Shift (tap=parenthesis, hold=modifier). Drove the design and implementation of if_tap and if_single macro functions. Released in 1.2.0. Major macro architecture improvement. Cross-device combination still a design challenge.
+
+i184 | - | kind:bug layer:permissions cause:de-compat cause:permission component:gui-app de_os:arch outcome:unknown pr_potential:unknown conf:inferred impact:install-blocked depth=full | polkit-agent-helper-1 pam_authenticate failed on Arch+X11. Maintainer asked if pkexec works for any other app; no follow-up. Likely a local PAM/polkit config issue.
+
+i185 | - | kind:bug layer:device layer:injector cause:de-compat cause:uinput-api component:injector de_os:gnome de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:broken-remap depth=full | GNOME Ubuntu Wayland: "Disable touchpad while typing" stopped working after applying a preset. Root: key-mapper's forwarded keyboard device lacks the input_id properties (vendor, product, bustype) that libinput/GNOME uses to identify it as a real keyboard. Fixed in copy-props branch by copying input_id from the original device to the forwarded uinput. Merged to main.
