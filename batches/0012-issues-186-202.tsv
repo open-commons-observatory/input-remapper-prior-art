@@ -1,0 +1,27 @@
+# Round 12: issues #186-#202 (12 issues), dates 2021-09-27 to 2021-11-05
+# Method: fullfetch per-round + readfull --q 350 --users 100 --min 60 --cap 500
+# All depth=full; tags manual.
+
+i186 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Macro variable reference syntax: proposal for $ or * prefix for variable interpolation (e.g. w($a), k($a)). Maintainer chose $. Implemented and documented.
+
+i187 | - | kind:bug layer:reader cause:device-quirk component:reader device_type:keyboard outcome:wontfix pr_potential:upstream-dep conf:stated impact:broken-remap symptom:device-not-detected depth=full | Logitech G910 G-Keys (G1-G9) report as F1-F9 in evtest because the firmware maps them at hardware level. key-mapper sees F1-F9, cannot distinguish G1 from F1. Only solution is a custom Logitech driver or firmware profile reprogramming. Wontfix in key-mapper.
+
+i191 | - | kind:meta layer:docs cause:doc-gap outcome:open pr_potential:docs-fix conf:stated depth=full | Discussion about offline vs online docs for macro reference, especially for i18n purposes. Decided to link online English docs from the help window for now.
+
+i192 | - | kind:meta layer:device cause:de-compat outcome:open pr_potential:code-fix conf:stated depth=full | Technical investigation: should key-mapper use ID_INPUT_* udev attributes (via pyudev) instead of its own classify() function for device type detection? Would make classification match what GNOME/KDE use. Also notes tablet/mouse dual-classification issue from #36.
+
+i195 | - | kind:question layer:mapping cause:doc-gap cause:symbol-mapping outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Cannot map > or $ characters directly. Maintainer explained: KEY_DOLLAR/KEY_GREATER are kernel codes; whether they produce the symbol depends on the keyboard layout in the environment. Solution: use xmodmap-based names (e.g. "less") or macro with Shift_L+key combination. Docs gap: xmodmap vs KEY_ naming distinction.
+
+i196 | - | kind:feature-request layer:mapping cause:missing-feature cause:wayland-issue outcome:wontfix pr_potential:wontfix conf:stated depth=full | Per-window preset/layout switching. Seventh instance of this wontfix answer on Wayland.
+
+i197 | - | kind:bug layer:daemon layer:device cause:autoload-failure cause:race-condition component:service de_os:arch de_os:kde outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Arch/KDE+Bluetooth: keyboard and mouse stop working after reboot until udev timeout expires. Root: udev rule fires key-mapper-control before the service is ready to accept D-Bus connections; D-Bus call blocks until udev timeout. Multiple fixes pushed: shorter timeouts, lazy device info loading, SharedDict elimination, better udev control logging. Long debugging session; issue partially resolved.
+
+i198 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Toggle-lock button: press once to hold a key, press again to release. Workaround using set/if_eq macros. key_down() and key_up() macro functions added to simplify this.
+
+i199 | - | kind:question layer:gui cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Cannot edit active mapping (buttons unrecognized). Same recurring issue: must click Restore Defaults to release device grab before re-editing. UI message at bottom informs about this but is easy to miss.
+
+i200 | - | kind:bug layer:injector layer:macro cause:macro-logic component:macros device_type:mouse outcome:open pr_potential:unknown conf:inferred impact:partial-remap symptom:mapping-not-working depth=full | Mouse wheel mapped buttons only scroll once then stop responding for ~30 seconds. Looks like a timing or release-event bug in scroll event injection. Logs shared but no fix visible.
+
+i201 | - | kind:bug layer:macro layer:injector cause:macro-logic component:macros outcome:workaround pr_potential:code-fix conf:stated impact:partial-remap symptom:key-stuck depth=full | Holding Shift+mapped combination: after the combo macro runs, subsequent unmapped keys lose the shift modifier. Root: k(Shift_L) in macro sends complete press+release, so shift is down on the "forwarded" device but already released on the "mapped" device. Workaround: end the macro with e(EV_KEY, KEY_LEFTSHIFT, 1) to re-press shift. key_down() would simplify this pattern.
+
+i202 | - | kind:bug layer:device cause:device-quirk component:reader device_type:keyboard outcome:wontfix pr_potential:upstream-dep conf:stated impact:ui-bug depth=full | duckyPad macropad shown as Mouse in UI because it exposes mouse capabilities even though it's primarily a keyboard. key-mapper's classification prioritizes non-keyboard capabilities; cannot infer primary function without firmware knowledge.
