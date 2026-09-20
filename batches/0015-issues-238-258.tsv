@@ -1,0 +1,27 @@
+# Round 15: issues #238-#258 (12 issues), dates 2021-12-22 to 2022-01-15
+# Method: fullfetch per-round + readfull --q 280 --users 60 --min 60 --cap 420
+# All depth=full; tags manual.
+
+i238 | - | kind:question layer:mapping cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Combination not working in MATLAB (AltGr+wasd). Modifier leak: AltGr stays held. Fixed by mapping Ctrl_L to disable (following combinations docs). Self-resolved after docs check.
+
+i240 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Different actions on press and release of the same button (e.g. mute on press, unmute on release). Already possible via e(EV_KEY, KEY_X, 1) for press and e(EV_KEY, KEY_X, 0) for release, or key_down/key_up macros.
+
+i241 | - | kind:bug layer:macro cause:x11-issue cause:de-compat component:macros de_os:ubuntu outcome:open pr_potential:unknown conf:inferred impact:partial-remap symptom:mapping-not-working depth=full | Alt+Left mapped to mouse button 6 not working as expected. Long debug session; user has difficulty with evtest. Maintainer asked for evtest output from both the original device and key-mapper device. Not fully resolved in the thread.
+
+i242 | - | kind:question layer:combination cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Water-damaged keyboard: F11+Shift maps to repeated characters. Root: F11 is forwarded before the combination triggers; must also map F11 to disable to suppress it. Combination behavior: base key is always forwarded unless explicitly mapped to disable.
+
+i243 | - | kind:question layer:macro cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf=stated depth=full | Home row mods (if_tap) require waiting time before shift activates. Alternative: if_single with timeout works slightly differently. Complex macro composition needed (nested if_single); maintainer explained behavior and upcoming if_held/if_released ideas.
+
+i246 | - | kind:meta layer:config cause:missing-feature component:ci-build outcome:open pr_potential:code-fix conf=inferred depth=full | Test infrastructure improvement issue: toolbox module, cleanup helpers, timing-tolerant tests, integration vs unit split. jonasBoss proposed improvements. Long ongoing discussion about test architecture.
+
+i247 | - | kind:bug layer:config cause:ui-logic component:presets outcome:fixed pr_potential:unknown conf:stated impact:broken-remap depth=full | Renaming a preset in the GUI does not update the autoload entry in config.json. The old preset name stays in autoload; injection therefore silently uses the old name. Maintainer confirmed and fixed.
+
+i248 | - | kind:meta cause:missing-feature outcome:fixed pr_potential:unknown conf:stated depth=full | Announcement: project renamed from "key-mapper" to "input-remapper" as of 1.3.0. AUR package migration note. Python package renamed to input_remapper. GitHub repo redirect active.
+
+i252 | - | kind:feature-request layer:mapping cause:missing-feature cause:wayland-issue outcome:open pr_potential:needs-design conf:stated depth=full | Global profiles and quick profile switching across multiple devices. Per-app switching reaffirmed as impossible on Wayland without a separate tray tool using CLI. Community suggested a systray tool as a separate project.
+
+i253 | - | kind:meta layer:config cause:de-compat outcome:fixed pr_potential:unknown conf:stated depth=full | Test failures in main branch: GUI tests fail when run from PyCharm because the test window doesn't get focus in some DE configurations. Fixed by adding PyCharm run configuration for tests.
+
+i256 | - | kind:bug layer:permissions cause:permission component:injector outcome:unknown pr_potential:docs-fix conf:inferred impact:install-blocked symptom:permission-error depth=full | Could not open uinput device in write mode (input-remapper 1.x). Maintainer asked for lsmod/uinput status; no follow-up. Redirected to #29.
+
+i258 | - | kind:bug layer:mapping cause:x11-issue cause:config-error component:keycodes outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Alphanumeric keys stopped working without KEY_ prefix after migrating config to new install. Root: xmodmap.json was empty (copied from previous system where it may have been populated differently). input-remapper-gtk populates xmodmap.json on startup; service alone cannot. Fix: run the GTK app to regenerate xmodmap.json.
