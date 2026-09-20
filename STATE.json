@@ -1,0 +1,99 @@
+{
+ "updated": "2026-09-20 01:49Z",
+ "repos": {
+  "z1": {
+   "kinds": {
+    "issue": {
+     "total": 1099,
+     "by_status": {
+      "stub": 1027,
+      "triaged": 0,
+      "read": 0,
+      "analyzed": 72
+     },
+     "by_depth": {
+      "title": 1027,
+      "thread": 0,
+      "full": 72,
+      "source": 0
+     },
+     "tagged_by": {
+      "none": 1027,
+      "heuristic": 0,
+      "manual": 72
+     }
+    },
+    "commit": {
+     "total": 929,
+     "by_status": {
+      "stub": 929,
+      "triaged": 0,
+      "read": 0,
+      "analyzed": 0
+     },
+     "by_depth": {
+      "title": 929,
+      "thread": 0,
+      "full": 0,
+      "source": 0
+     },
+     "tagged_by": {
+      "none": 929,
+      "heuristic": 0,
+      "manual": 0
+     }
+    }
+   },
+   "cursor_first_not_analyzed": {
+    "issue": 14,
+    "commit": 1
+   }
+  }
+ },
+ "kinds": {
+  "issue": {
+   "total": 1099,
+   "by_status": {
+    "stub": 1027,
+    "triaged": 0,
+    "read": 0,
+    "analyzed": 72
+   },
+   "by_depth": {
+    "title": 1027,
+    "thread": 0,
+    "full": 72,
+    "source": 0
+   },
+   "tagged_by": {
+    "none": 1027,
+    "heuristic": 0,
+    "manual": 72
+   }
+  },
+  "commit": {
+   "total": 929,
+   "by_status": {
+    "stub": 929,
+    "triaged": 0,
+    "read": 0,
+    "analyzed": 0
+   },
+   "by_depth": {
+    "title": 929,
+    "thread": 0,
+    "full": 0,
+    "source": 0
+   },
+   "tagged_by": {
+    "none": 929,
+    "heuristic": 0,
+    "manual": 0
+   }
+  }
+ },
+ "cursor_first_not_analyzed": {
+  "issue": 14,
+  "commit": 1
+ }
+}

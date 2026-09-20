@@ -1,0 +1,128 @@
+# Worklist (next records not yet manually analyzed)
+
+
+## issues
+
+- [#14](../records/issues/0014.md) possible fix for #8
+- [#31](../records/issues/0031.md) draft: try to package as Flatpak
+- [#45](../records/issues/0045.md) Add systemctl enable for PIP install
+- [#82](../records/issues/0082.md) Draft: first try to debianize
+- [#90](../records/issues/0090.md) Helper to find symbol names and combinations
+- [#91](../records/issues/0091.md) Support for keyboard layers
+- [#92](../records/issues/0092.md) Filter Eee hotkeys (wifi controls, backlight, leds..)
+- [#93](../records/issues/0093.md) Unable to configure devices with the same name independently
+- [#94](../records/issues/0094.md) Key-Mapper Settings Not Persistent
+- [#95](../records/issues/0095.md) Mapping templates
+- [#98](../records/issues/0098.md) key-mapper-git: /lib è già presente nel filesystem (appartiene a filesystem)
+- [#99](../records/issues/0099.md) Feature Request: mouse speed adjustment
+- [#100](../records/issues/0100.md) Feature Request: Distinction between mouse press and mouse release.
+- [#101](../records/issues/0101.md) unicode macro
+- [#102](../records/issues/0102.md) Joystick emulating mouse is not detected
+- [#103](../records/issues/0103.md) Mouse button mapping issues
+- [#104](../records/issues/0104.md) Toggle on/off script needed
+- [#106](../records/issues/0106.md) Add GObject dependencies to setup.py
+- [#107](../records/issues/0107.md) Autoload function not working
+- [#109](../records/issues/0109.md) Macro editor
+- [#110](../records/issues/0110.md) Xinput plugin
+- [#112](../records/issues/0112.md) Cannot generate Mouse Button Events
+- [#114](../records/issues/0114.md) xmodmap on wayland
+- [#115](../records/issues/0115.md) Improve README - add note regarding policykit
+- [#116](../records/issues/0116.md) Notification for device being added/removed/mapped
+- [#117](../records/issues/0117.md) Fails to run without policykit?
+- [#118](../records/issues/0118.md) How to edit pressed key without injecting
+- [#120](../records/issues/0120.md) Tap and Hold binding for same button?
+- [#121](../records/issues/0121.md) Halt waits in h() when key is released - enables different actions depending on 
+- [#122](../records/issues/0122.md) rc-service key-mapper start - rc-service: service `key-mapper' does not exist
+- [#123](../records/issues/0123.md) Multiple devices with same name share the same macros
+- [#124](../records/issues/0124.md) Feature request: trackball scroll wheel emulation
+- [#125](../records/issues/0125.md) Cursor not moving in postmarketos
+- [#126](../records/issues/0126.md) How to map ctrl hjkl as arrow keys
+- [#127](../records/issues/0127.md) Extended docs by foot pedals and keyboard scroll
+- [#128](../records/issues/0128.md) Framedrops in games for couple of seconds during injection
+- [#129](../records/issues/0129.md) Add initial i18n support
+- [#130](../records/issues/0130.md) Add Slovak translation
+- [#131](../records/issues/0131.md) Only keys that are assigned a mapping work as intended after injection, others a
+- [#132](../records/issues/0132.md) Debug argument help can now be translated, add .pot template
+- [#135](../records/issues/0135.md) Document mapping field
+- [#136](../records/issues/0136.md) Adding mappings by hitting the output key/combination on any device
+- [#137](../records/issues/0137.md) Improve documentation mapping, fixes #135
+- [#140](../records/issues/0140.md) key-mapper freezes external usb mouse and keyboard
+- [#141](../records/issues/0141.md) Create it_IT.po
+- [#142](../records/issues/0142.md) Won't Install
+- [#143](../records/issues/0143.md) fix typo in it_IT.po
+- [#144](../records/issues/0144.md) Cursor focus not detected with key-mapper
+- [#145](../records/issues/0145.md) XCompose being ignored
+- [#146](../records/issues/0146.md) Restrict mappings to specific applications
+- [#147](../records/issues/0147.md) Help wanted from people who know X/Gnome/Wayland/KDE internals
+- [#148](../records/issues/0148.md) Razer DeathAdder Elite Mapping Issues
+- [#149](../records/issues/0149.md) Update it_IT.po
+- [#150](../records/issues/0150.md) gettext dependency missing for the ubuntu/debian build
+- [#151](../records/issues/0151.md) missing macro info ? coming back from #104
+- [#152](../records/issues/0152.md) Layout is changed on Apply
+- [#153](../records/issues/0153.md) How to macro an autofire
+- [#154](../records/issues/0154.md) Autoload doesn't seem to work, but apply works fine
+- [#155](../records/issues/0155.md) Key mapping not working, nothing happens
+- [#159](../records/issues/0159.md) [Req] Priority setting / Ordering precedence of mappings
+
+## commits
+
+- [`66b425b`](../records/commits/0001-66b425b.md) Initial commit
+- [`5a460eb`](../records/commits/0002-5a460eb.md) outlined some stuff
+- [`34d0c7f`](../records/commits/0003-34d0c7f.md) more todo
+- [`82fad5f`](../records/commits/0004-82fad5f.md) rename
+- [`163f1b6`](../records/commits/0005-163f1b6.md) config, more renaming, some glade prototype
+- [`f50a706`](../records/commits/0006-f50a706.md) starts and closes
+- [`a3f814f`](../records/commits/0007-a3f814f.md) creating config structure
+- [`ee28c59`](../records/commits/0008-ee28c59.md) test for config contents
+- [`382ede3`](../records/commits/0009-382ede3.md) show devices, adding rows
+- [`d6dd961`](../records/commits/0010-d6dd961.md) update readme
+- [`9253cc7`](../records/commits/0011-9253cc7.md) mapping list headers
+- [`916ec62`](../records/commits/0012-916ec62.md) bunch of stuff
+- [`ac1ba6d`](../records/commits/0013-ac1ba6d.md) creating and selecting presets - super buggy
+- [`359d8b6`](../records/commits/0014-359d8b6.md) fixed duplicate first rows
+- [`5744e80`](../records/commits/0015-5744e80.md) some rearranged buttons
+- [`4a1668c`](../records/commits/0016-4a1668c.md) update roadmap
+- [`a003583`](../records/commits/0017-a003583.md) less show off
+- [`4e4d2cb`](../records/commits/0018-4e4d2cb.md) idk
+- [`2f32589`](../records/commits/0019-2f32589.md) I think I figured that setxkbmap nightmare out
+- [`b4f139f`](../records/commits/0020-b4f139f.md) update readme
+- [`26081ac`](../records/commits/0021-26081ac.md) evtest
+- [`fecfa01`](../records/commits/0022-fecfa01.md) parsing libinput_list
+- [`02efe37`](../records/commits/0023-02efe37.md) creating the symbols file, symlinking, more tests
+- [`9ac1fef`](../records/commits/0024-9ac1fef.md) tests for create preset, config lib not needed
+- [`15fec08`](../records/commits/0025-15fec08.md) creates dummy but working configs
+- [`0065000`](../records/commits/0026-0065000.md) fixed stuff, dummy configs actually work now
+- [`50d6d21`](../records/commits/0027-50d6d21.md) using python-evdev
+- [`0ed8b4a`](../records/commits/0028-0ed8b4a.md) some rearrangement
+- [`6406796`](../records/commits/0029-6406796.md) can apply presets
+- [`d211b39`](../records/commits/0030-d211b39.md) update roadmap
+- [`2952fb4`](../records/commits/0031-2952fb4.md) some os.path.join refactoring
+- [`a4f5d05`](../records/commits/0032-a4f5d05.md) linking the whole dir
+- [`cb700fd`](../records/commits/0033-cb700fd.md) renaming and deleting presets
+- [`aa8bce2`](../records/commits/0034-aa8bce2.md) I just mapped my mouse key
+- [`7044e6f`](../records/commits/0035-7044e6f.md) fixed tests
+- [`0ccc47f`](../records/commits/0036-0ccc47f.md) more beautiful mapping table
+- [`b3ddefb`](../records/commits/0037-b3ddefb.md) displaying and saving mappings into the table
+- [`24f0019`](../records/commits/0038-24f0019.md) update roadmap
+- [`df7ce29`](../records/commits/0039-df7ce29.md) Reading keycodes from the mouse
+- [`c969236`](../records/commits/0040-c969236.md) mapping is a class now, some simplifications
+- [`8a49664`](../records/commits/0041-8a49664.md) wip, tests failing, stuff broken
+- [`d93e7f2`](../records/commits/0042-d93e7f2.md) seems to be working again
+- [`2b1a0de`](../records/commits/0043-2b1a0de.md) debug print cleanup
+- [`1dd995e`](../records/commits/0044-1dd995e.md) tested the Mapping object
+- [`b88f9d9`](../records/commits/0045-b88f9d9.md) more tests
+- [`c498856`](../records/commits/0046-c498856.md) tests, status bar, tooltips
+- [`6d80f36`](../records/commits/0047-6d80f36.md) update roadmap
+- [`339154b`](../records/commits/0048-339154b.md) default keys for unused keys
+- [`4e01e43`](../records/commits/0049-4e01e43.md) checks for admin rights
+- [`7064be3`](../records/commits/0050-7064be3.md) input validation for mapping change
+- [`c08093d`](../records/commits/0051-c08093d.md) continues to run without sudo, but warns
+- [`4186473`](../records/commits/0052-4186473.md) showing permission denied errors
+- [`0152e5a`](../records/commits/0053-0152e5a.md) forgot to change some alsacontrol stuff to key-mapper in comments
+- [`a2def23`](../records/commits/0054-a2def23.md) update roadmap
+- [`f15f599`](../records/commits/0055-f15f599.md) .idea to gitignore
+- [`a402732`](../records/commits/0056-a402732.md) refactoring, restructuring
+- [`44bc360`](../records/commits/0057-44bc360.md) continued rearrangement
+- [`fc578d9`](../records/commits/0058-fc578d9.md) Still moving stuff around
+- [`d279f2b`](../records/commits/0059-d279f2b.md) fixed some stuff that was probably leftover from debugging
+- [`d4a727f`](../records/commits/0060-d4a727f.md) renaming, keeping unmapped keys at their defaults
