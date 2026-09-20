@@ -1,0 +1,27 @@
+# Round 2: issues #13, #15-#27 (12 issues), dates 2021-01-02 to 2021-01-27
+# Method: full thread read via API (readfull --q 400 --users 200 --min 60 --cap 700)
+# All depth=full; tags manual.
+
+i13 | - | kind:bug layer:reader layer:injector cause:missing-feature cause:device-quirk component:reader component:injector device_type:mouse outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Duplicate of #12 cluster: horizontal scroll (EV_REL/REL_HWHEEL) not mappable on MX Master 2S and MX Ergo. Fixed in 0.6.0 per maintainer. Confirms the scroll-mapping fix was needed across multiple Logitech models.
+
+i15 | - | kind:feature-request layer:install cause:missing-feature component:service de_os:openrc outcome:open pr_potential:code-fix conf:stated depth=full | Request for OpenRC and sysv init scripts. Maintainer asked for a PR; community members posted working OpenRC and runit scripts in comments but no official merge. PR potential: add init scripts to packaging.
+
+i16 | - | kind:question layer:macro cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | User wanted three-modifier macro (ctrl+alt+down) and got a syntax error; maintainer explained nested macro syntax m(ctrl, m(alt, k(down))). Classic docs gap; nested syntax was not in the docs.
+
+i17 | - | kind:question layer:daemon cause:config-error outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | User alarmed that get_user() returned root in systemd daemon on Arch+Wayland+GNOME. Maintainer stated this is expected and normal; the injection uses the user config via D-Bus. Docs gap: expected daemon behavior not documented.
+
+i18 | - | kind:question layer:daemon cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Mapping not active on lockscreen (pop-os, before first login). Maintainer explained the service waits for user login before injecting, and provided a workaround via runuser + --config-dir flag. Fix: document lockscreen limitation and config-dir option.
+
+i19 | - | kind:support layer:install cause:distro-compat cause:permission component:gui-app de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | ZorinOS: app did not open from menu and user unclear about password prompt (polkit). Maintainer walked through install and confirmed a recent fix resolved it.
+
+i21 | - | kind:feature-request layer:install cause:missing-feature cause:permission outcome:wontfix pr_potential:wontfix conf:stated depth=full | Request for Flatpak on Flathub. Maintainer investigated; Flatpak cannot grant /dev/uinput access due to sandbox restrictions. Fundamental limitation confirmed by flatpak issue #4137. Wontfix.
+
+i22 | - | kind:question cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | User asked if upgrading from 0.5.0 to 0.6.0 was necessary. Maintainer said no. Minor docs/communication gap.
+
+i23 | - | kind:bug layer:daemon layer:install cause:distro-compat cause:evdev-api component:service de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:daemon-not-starting depth=full | Service crashed at startup on Ubuntu 20.10 with NameError in evdev 1.3.0 ecodes.py. Workaround: reinstall evdev via pip not setuptools. Reported to python-evdev upstream. Maintainer says use evdev from pip; root cause is an evdev build issue.
+
+i24 | - | kind:question layer:device layer:injector cause:doc-gap device_type:mouse outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Questions about trackball/Elecom compatibility and libinput coexistence. Maintainer confirmed any evdev device works. Side issue: applying a preset changes xinput device IDs, breaking existing libinput xinput --set-prop commands. Workaround: update xinput ID after applying; maintainer suggested autostart script.
+
+i25 | - | kind:bug layer:daemon layer:device cause:autoload-failure cause:device-quirk component:service de_os:ubuntu de_os:gnome device_type:keyboard device_type:mouse outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Bluetooth devices not autoloaded on reconnect (Ubuntu 20.10 GNOME, Logitech M585 and K380). Service could not inject for unknown device at login time. Fixed in 0.7.0 via udev rule: autoload triggers on device connect, not just at login. Multiple back-and-forth test iterations needed.
+
+i27 | - | kind:bug layer:reader cause:evdev-api cause:device-quirk outcome:wontfix pr_potential:upstream-dep conf:stated impact:broken-remap symptom:device-not-detected depth=full | Brightness keys (KEY_BRIGHTNESSDOWN/UP) do not report events via evdev on the user's MX Linux/xfce laptop even though the device appears to have the capability. Maintainer confirmed this is an evdev/kernel limitation, not fixable in key-mapper; brightness key events are handled at DE level, not evdev.
