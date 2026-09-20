@@ -1,0 +1,27 @@
+# Round 6: issues #75-#89 (12 issues), dates 2021-03-29 to 2021-04-11
+# Method: full thread read via API (readfull --q 350 --users 100 --min 60 --cap 500)
+# All depth=full; tags manual.
+
+i75 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:open pr_potential:code-fix conf:stated depth=full | Request to refresh the device list from the GUI without restarting the app. No maintainer response visible; still open. PR potential: add a refresh button to device list.
+
+i76 | - | kind:bug layer:device cause:device-quirk component:reader device_type:gamepad outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:device-not-detected depth=full | DataFrog gamepad D-Pad not detected: D-pad uses joystick axes (ABS), not button events. Fixed in joystick-correct-abs-range branch; all four directions need correct axis range handling.
+
+i77 | - | kind:bug layer:install cause:distro-compat component:ci-build de_os:ubuntu device_type:tablet outcome:open pr_potential:unknown conf:inferred impact:install-blocked symptom:install-fail depth=full | .deb install failed with pkg_resources error on some Ubuntu versions. Maintainer asked for logs; reporter found building .deb from source worked. Separate question about Wacom Intuos touchstrip/ring events never resolved.
+
+i78 | - | kind:feature-request layer:reader cause:missing-feature component:reader outcome:fixed pr_potential:unknown conf:stated depth=full | YubiKey and similar security keys showing up in device list unnecessarily. Maintainer added filtering by vendor ID for known security devices.
+
+i79 | - | kind:feature-request layer:mapping layer:injector cause:missing-feature component:injector device_type:mouse outcome:fixed pr_potential:unknown conf:stated depth=full | Request to map mouse movement (REL_X/Y) to scroll wheel or joystick. Maintainer prototyped map-mouse-movement branch; eventually added to beta/v2 as RelToRelHandler. Released later.
+
+i80 | - | kind:feature-request layer:daemon cause:missing-feature component:service outcome:open pr_potential:needs-design conf:stated depth=full | Plugin support request: run code during injection, add new macro syntax, sandboxed python process. Maintainer acknowledged Consumer base class exists; design discussion only.
+
+i81 | - | kind:question layer:install cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to uninstall when setup.py was used (not apt/pip). Maintainer provided workaround (find + rm). setup.py removed from docs. Docs gap: uninstall instructions for unusual install methods.
+
+i83 | - | kind:meta layer:install cause:distro-compat de_os:fedora outcome:open pr_potential:code-fix conf:stated depth=full | Request for RPM packaging for Fedora. Community members contributed COPR repo and spec file discussions. Also surfaces python-evdev upstream maintenance concern (gvalkov). Maintainer added as co-maintainer of python-evdev to unblock.
+
+i84 | - | kind:question layer:device cause:device-quirk device_type:gamepad outcome:unknown pr_potential:unknown conf:inferred depth=full | Gamepad joystick mapped to keys: autorepeat stops on joystick return-to-center (no key-up event matches the repeat logic). Device limitation for analog-to-digital events.
+
+i85 | - | kind:bug layer:install cause:distro-compat de_os:fedora outcome:open pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | Fedora: pip install as root put module in /root/.local/lib, not accessible to regular user. pip on Fedora installs to user-local paths even for root. Workaround: setup.py install. Waiting on RPM packaging (#83).
+
+i88 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:open pr_potential:code-fix conf:inferred depth=full | Request for evdev event monitor/viewer in the GUI (show currently pressed keys, help debug n-key rollover). Mentioned as potential addition to about/help popup.
+
+i89 | - | kind:bug layer:injector cause:unknown de_os:arch de_os:gnome outcome:unknown pr_potential:unknown conf:inferred impact:perf depth=full | Frame drops in Minecraft when pressing keys mapped to LeftCtrl or CapsLock on Manjaro+GNOME. Maintainer said key-mapper should not cause this; suspected GNOME or xkb. Not reproducible; no follow-up.
