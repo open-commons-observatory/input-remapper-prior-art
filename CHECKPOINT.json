@@ -3,10 +3,10 @@
   "description": "Machine-readable session state. Read this at the start of every session to know where to continue. Updated after every batch and at end of every session.",
   "session": 2,
   "session_started": "2026-09-20",
-  "last_batch": 11,
-  "last_issue_analyzed": 185,
+  "last_batch": 12,
+  "last_issue_analyzed": 202,
   "next_issue_to_fetch": 13,
-  "issues_analyzed": 132,
+  "issues_analyzed": 144,
   "issues_total": 1099,
   "taxonomy_locked": false,
   "taxonomy_notes": "P05 first draft validated against full title scan. Added: autoload-failure cause, openrc de_os. Needs validation after first 50 full reads.",
@@ -15,7 +15,7 @@
   "p06_done": true,
   "reading_order": "chronological (by issue number)",
   "fetch_cache_watermark": 0,
-  "notes": "#170-#185: if_single/if_tap from Space Cadet request (major macro milestone); copy-props fix for GNOME DWT; Fedora install cluster continues; text() macro wanted.",
+  "notes": "#186-#202: $ variable syntax; udev timing race on arch KDE (long fix); key_up/key_down added; wheel scroll 30s pause bug; modifier leak after combo macro (key_down workaround needed).",
   "open_questions": [
     "Does de_os need 'systemd' value? Current plan: use service-unit-issue symptom instead. Revisit after 30 reads.",
     "Should 'auto' facet be added (detect+handle potential)? Hold."
