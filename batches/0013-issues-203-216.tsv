@@ -1,0 +1,27 @@
+# Round 13: issues #203-#216 (12 issues), dates 2021-11-07 to 2021-11-27
+# Method: fullfetch per-round + readfull --q 300 --users 80 --min 60 --cap 480
+# All depth=full; tags manual.
+
+i203 | - | kind:feature-request layer:mapping cause:missing-feature cause:wayland-issue outcome:workaround pr_potential:needs-design conf:stated depth=full | Per-application auto-profile switching. Eighth wontfix on Wayland. Community proposed X11-only script using xdotool; maintainer said CLI + examples.md is the right vehicle for this.
+
+i204 | - | kind:bug layer:install cause:distro-compat de_os:fedora outcome:workaround pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | Fedora: pip install fails, python-evdev not found. python3-devel required for evdev C extension. setup.py install works but uninstall is painful. Same Fedora install cluster.
+
+i205 | - | kind:feature-request layer:device layer:injector cause:missing-feature component:injector outcome:open pr_potential:needs-design conf:stated depth=full | Use "key-mapper keyboard/mouse/gamepad" device names instead of "mapped/forwarded". Design discussion: persistent global uinput devices vs per-injection devices. Tradeoff: persistent devices would allow reusing devices across injection restart (faster switching) but loses per-device property copying.
+
+i206 | - | kind:bug layer:reader cause:device-quirk device_type:mouse outcome:wontfix pr_potential:upstream-dep conf:stated impact:broken-remap symptom:device-not-detected depth=full | Logitech MX Master 2S second scroll wheel (thumb wheel) not separately addressable in evtest (same events as main wheel). Only Logitech-specific driver (libratbag/piper) or firmware reprogramming could differentiate them. Wontfix.
+
+i207 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:open pr_potential:code-fix conf:stated depth=full | Search/filter the mapping table. For users with many mappings. Maintainer proposed jump-to-match style. PR potential: add search field that filters or jumps to mappings.
+
+i208 | - | kind:bug layer:daemon cause:evdev-api cause:distro-compat component:service de_os:arch outcome:workaround pr_potential:docs-fix conf:inferred impact:install-blocked symptom:daemon-not-starting depth=full | Service startup timed out. Likely python-evdev compilation issue (same as #23 cluster). Maintainer recommended using distro package (python-evdev from pacman/apt) instead of pip-compiled version.
+
+i209 | - | kind:question layer:macro cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Can arbitrary Unicode characters (emoji, coins) be mapped? Maintainer explained: key-mapper sends keycodes, environment decides the symbol; no keycode exists for emoji. Workaround: Ctrl+Shift+U+codepoint (GTK-specific, risky). Docs gap: explicit statement that emoji/arbitrary Unicode is not generally supported.
+
+i210 | - | kind:question layer:mapping cause:doc-gap cause:x11-issue outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Cyrillic symbols and tilde (~) not mappable directly on Linux Mint/Cinnamon with Russian+English layout. Root: xmodmap-based key names depend on active layout; tilde not in xmodmap output. Maintainer explained the xmodmap-based lookup and KEY_ vs xmodmap distinction. Multi-layout complexities not fully resolved.
+
+i211 | - | kind:bug layer:install cause:distro-compat component:gui-app outcome:fixed pr_potential:unknown conf:stated impact:install-blocked depth=full | GTK CSS deprecation warning blocked startup because psutil was still required. Maintainer removed psutil dependency.
+
+i212 | - | kind:bug layer:daemon cause:autoload-failure cause:de-compat component:service de_os:arch de_os:wayland outcome:workaround pr_potential:docs-fix conf:stated impact:broken-remap symptom:service-unit-issue depth=full | Sway on Arch: autoloading on startup not working. Root: Sway affects environment variables that some systemd units depend on for X/Wayland detection; key-mapper-service starts before Sway but the .desktop autoload runs after Sway login. Workaround: run key-mapper-control --command autoload from ~/.profile or Sway autostart. Docs gap: document non-systemd-autostart environments.
+
+i213 | - | kind:bug layer:install cause:distro-compat cause:python-version component:ci-build de_os:fedora outcome:workaround pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | CentOS 7, Python 3.6, offline: setup.py failed with "not a git repository" because commit_hash.py generation requires git. Workaround: initialize git repo first. Also: evdev C compilation issue on Python 3.6. Very old/constrained environment.
+
+i216 | - | kind:spam cause:config-error outcome:unknown pr_potential:unknown conf:inferred depth=full | User confused "keymapper" (https://github.com/houmain/keymapper) with input-remapper. Different project, one letter difference in name. Maintainer identified the confusion and closed.
