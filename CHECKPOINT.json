@@ -3,10 +3,10 @@
   "description": "Machine-readable session state. Read this at the start of every session to know where to continue. Updated after every batch and at end of every session.",
   "session": 2,
   "session_started": "2026-09-20",
-  "last_batch": 4,
-  "last_issue_analyzed": 60,
+  "last_batch": 5,
+  "last_issue_analyzed": 74,
   "next_issue_to_fetch": 13,
-  "issues_analyzed": 48,
+  "issues_analyzed": 60,
   "issues_total": 1099,
   "taxonomy_locked": false,
   "taxonomy_notes": "P05 first draft validated against full title scan. Added: autoload-failure cause, openrc de_os. Needs validation after first 50 full reads.",
@@ -15,7 +15,7 @@
   "p06_done": true,
   "reading_order": "chronological (by issue number)",
   "fetch_cache_watermark": 0,
-  "notes": "Batch 0004: #44-#60. Patterns: per-app switching impossible on Wayland (recurring theme); key-stuck/repeat bugs from macro injection; Razer firmware-level keys wontfix (upstream); autoload-on-reconnect still has edge cases.",
+  "notes": "Batch 0005: #61-#74. Patterns: gamepad ABS range bugs (joystick-as-mouse); per-app switching always answered wontfix-Wayland; UI discoverability gaps accumulate; EGV101 multi-mode device detection.",
   "open_questions": [
     "Does de_os need 'systemd' value? Current plan: use service-unit-issue symptom instead. Revisit after 30 reads.",
     "Should 'auto' facet be added (detect+handle potential)? Hold."
