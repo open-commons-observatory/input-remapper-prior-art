@@ -1,0 +1,27 @@
+# Round 14: issues #217-#234 (12 issues), dates 2021-11-28 to 2021-12-14
+# Method: fullfetch per-round + readfull --q 300 --users 80 --min 60 --cap 450
+# All depth=full; tags manual.
+
+i217 | - | kind:bug layer:permissions cause:de-compat cause:permission component:gui-app de_os:arch de_os:kde outcome:unknown pr_potential:unknown conf:inferred impact:install-blocked depth=full | Arch+KDE: pkexec authentication fails with "access denied" even with wheel group membership. Maintainer said this shouldn't be a key-mapper issue; probably a polkit or PAM configuration problem specific to the user's system.
+
+i218 | - | kind:meta cause:missing-feature outcome:fixed pr_potential:unknown conf:stated depth=full | Project rename discussion: "key-mapper" → "Input Remapper". Community preferred "Input Remapper" over "Keycode Mapper". Renamed in 1.3.0. GitHub redirects handle old links. Also drove the Python package rename to input_remapper.
+
+i220 | - | kind:feature-request layer:mapping cause:missing-feature cause:x11-issue component:keycodes outcome:fixed pr_potential:unknown conf:stated depth=full | xmodmap should be a recommended dependency; without it, mapping by key name (e.g. "a") fails because xmodmap -pke provides the key name lookup. Maintainer agreed to document it; AUR package added it as optdepends.
+
+i221 | - | kind:bug layer:injector layer:macro cause:x11-issue cause:wayland-issue component:injector de_os:wayland outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:key-stuck depth=full | Wayland: modifier key not released after combination macro (Control_L + combo). Root: modifier injected via forwarded device can't be released by mapped device. Fix in key-mapper-devices branch: global persistent uinputs so modifier release happens on same device. Released in v1.4.0 architecture. key_up() macro also helps.
+
+i222 | - | kind:bug layer:reader cause:symbol-mapping component:reader device_type:mouse outcome:open pr_potential:code-fix conf:inferred impact:ui-bug depth=full | Logitech G300s button G9 shows as "unknown" in GUI (no human-readable name in xmodmap). Button works but displays as keycode number. PR potential: show keycode number (e.g. "280") instead of "unknown".
+
+i223 | - | kind:bug layer:reader cause:device-quirk component:reader device_type:keyboard outcome:open pr_potential:code-fix conf:stated impact:broken-remap symptom:device-not-detected depth=full | Jabra headphone media buttons not detected in key-mapper UI. Buttons produce a down event immediately followed by a release event (very short press). The reader may miss them because of timing. Maintainer noted this needs investigation in the reader.
+
+i224 | - | kind:feature-request layer:daemon cause:missing-feature component:service outcome:open pr_potential:code-fix conf:inferred depth=full | Get the currently active injected profile via key-mapper-control. Companion to #203 for auto-switching scripts. Design note added to daemon.
+
+i225 | - | kind:bug layer:install cause:distro-compat de_os:fedora outcome:workaround pr_potential:unknown conf:inferred impact:install-blocked depth=full | Fedora 34→35 upgrade deleted pip-installed key-mapper Python files (pip files not tracked by dnf). Reinstall resolves; autoload may still not work on Fedora. Another Fedora install cluster datapoint.
+
+i226 | - | kind:question cause:doc-gap outcome:unknown pr_potential:docs-fix conf:inferred depth=full | Logitech G600 user getting confusing feedback when applying preset. No maintainer response; appears to be UI confusion about the apply workflow.
+
+i229 | - | kind:bug layer:injector layer:macro cause:wayland-issue cause:macro-logic component:injector de_os:wayland outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:key-stuck depth=full | Wayland: modifier key in combination not released after macro. Same root as #221. Maintainer confirmed fix in key-mapper-devices branch. release_all() macro proposed as a cleaner solution; key_up() also helps.
+
+i231 | - | kind:bug layer:install cause:python-version cause:distro-compat component:ci-build de_os:ubuntu outcome:workaround pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | Python 3.10 upgrade breaks key-mapper: package installed into python3.8 path not in python3.10 sys.path. Multiple reporters. Root: python version mismatch between pip/setup.py and system default. Fix: rebuild with python3.10 explicitly. Arch: yay -Scc clears AUR cache needed for clean rebuild.
+
+i234 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:open pr_potential:needs-design conf:stated depth=full | Run arbitrary scripts or applications from a key press. Maintainer noted security concern: service runs as root, executing user scripts would be a privilege escalation vector. Needs sandboxing design. Also: preset switching via key mentioned as related feature.
