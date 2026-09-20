@@ -1,0 +1,27 @@
+# Round 3: issues #28-#43 (12 issues), dates 2021-01-30 to 2021-02-19
+# Method: full thread read via API (readfull --q 400 --users 150 --min 60 --cap 600)
+# All depth=full; tags manual.
+
+i28 | - | kind:bug layer:gui cause:distro-compat cause:config-error component:gui-app de_os:arch outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:gui-crash depth=full | GUI crashed on Arch with GTK assertion error. Root cause: user had symlinked sudo to doas which lacks X11 DISPLAY access when used with pkexec. Maintainer added Gtk.init() call but ultimately resolved when user installed proper sudo. Environment-specific.
+
+i29 | - | kind:bug layer:permissions cause:permission cause:distro-compat component:service de_os:arch outcome:fixed pr_potential:docs-fix conf:stated impact:install-blocked symptom:permission-error depth=full | Could not open uinput device in write mode. Multiple reporters on Arch. Workaround: install xf86-input-evdev to ensure uinput module loads; also modprobe uinput. Maintainer noted the uinput kernel module must be loaded; reboot sometimes sufficient. PR potential: add uinput modprobe step to docs.
+
+i30 | - | kind:feature-request layer:macro layer:combination cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Request for dual-function Capslock: Escape when tapped, Ctrl when held with another key. Maintainer explained it was architecturally complex (needs key-state awareness and arbitrary-key combos). Later resolved in 2021 via if_single and if_tap macros.
+
+i32 | - | kind:feature-request layer:mapping cause:missing-feature cause:wayland-issue outcome:open pr_potential:needs-design conf:stated depth=full | Request for per-application preset switching (e.g. game-specific layouts). Maintainer noted Wayland hides window focus info; possible to implement by watching process names but requires design. Still open.
+
+i33 | - | kind:bug layer:mapping layer:injector cause:symbol-mapping cause:x11-issue component:keycodes outcome:fixed pr_potential:unknown conf:stated impact:partial-remap symptom:mapping-not-working depth=full | F13-F24 and unusual keys not mappable because xmodmap/xkb didn't know about them. Maintainer explored xkb branch but hit libxkbcommon issues on some systems. Workaround: use macro for unsupported keys. Eventually resolved for most cases via existing xkb workaround.
+
+i35 | - | kind:bug layer:injector cause:regression component:injector device_type:mouse outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:key-stuck depth=full | 0.6.1 regression: applying a profile froze mouse pointer. Root cause: wrong capabilities in the injected virtual device (magic number). Maintainer pushed fix same day after seeing debug log.
+
+i36 | - | kind:bug layer:device layer:injector cause:device-quirk component:injector device_type:tablet outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working symptom:lag depth=full | Drawing tablet cursor stopped moving when a stylus button was mapped. Tablet (UGEE M708) was mis-detected as a gamepad, so ABS_X/Y events were converted to REL events. Multiple fixes: stricter gamepad detection, ignoring tablet pressure/ABS events, separate forwarding device. Partially resolved; cursor eventually worked after architectural changes.
+
+i37 | - | kind:feature-request layer:reader layer:injector cause:missing-feature component:reader component:injector device_type:mouse outcome:fixed pr_potential:unknown conf:stated depth=full | Left mouse button (BTN_LEFT) could not be remapped via GUI (disabled to prevent UI breaking, and safety concern). Maintainer pushed fix in April 2021 with a warning if no alternative button is configured as BTN_LEFT.
+
+i40 | - | kind:meta layer:install cause:distro-compat component:ci-build outcome:fixed pr_potential:unknown conf:stated depth=full | Request for Debian-compliant packaging (dpkg-buildpackage). A Debian Developer volunteered, built the package, submitted to NEW queue. key-mapper 1.0.0 accepted into Debian 12.
+
+i41 | - | kind:bug layer:install cause:distro-compat component:gui-app de_os:arch outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | AUR install: startup crash because home directory group was not the user group. Maintainer pushed fix to handle non-standard home directory group ownership.
+
+i42 | - | kind:meta layer:mapping cause:x11-issue cause:symbol-mapping component:keycodes outcome:open pr_potential:needs-design conf:inferred depth=full | Design notes issue (by maintainer) for XKB config generation to support unknown keys. Covers setxkbmap crash risks and difficulty of writing valid XKB files. Internal planning issue.
+
+i43 | - | kind:bug layer:install cause:de-compat cause:permission component:gui-app de_os:fedora outcome:unknown pr_potential:unknown conf:inferred depth=full | Fedora 33 + KDE Plasma 5.21: pkexec authentication fails after Plasma upgrade. Reporter closed as a Plasma-specific issue. Not a key-mapper bug.
