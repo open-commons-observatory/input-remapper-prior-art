@@ -1,0 +1,27 @@
+# Round 16: issues #261-#283 (12 issues), dates 2022-01-16 to 2022-02-03
+# Method: fullfetch per-round + readfull --q 250 --users 60 --min 60 --cap 400
+# All depth=full; tags manual.
+
+i261 | - | kind:feature-request layer:mapping cause:wayland-issue cause:missing-feature component:keycodes outcome:open pr_potential:needs-design conf:stated depth=full | Ship locale-specific keycode-to-symbol mapping files for systems without xmodmap (especially Wayland). Maintainer noted maintaining per-locale files would be complex; each DE has its own Wayland layout approach.
+
+i262 | - | kind:feature-request layer:daemon layer:injector cause:missing-feature component:injector outcome:open pr_potential:needs-design conf:stated depth=full | Reuse existing forwarded uinput on preset switch instead of regrabbing device. Would make preset switching faster. Related to global persistent uinputs (#205) design work.
+
+i266 | - | kind:meta cause:missing-feature component:ci-build outcome:fixed pr_potential:unknown conf:stated depth=full | Run unit tests via CI pipeline. Contributor offered to set up GitHub Actions. Eventually implemented.
+
+i268 | - | kind:question layer:gui cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Cannot find BTN_RIGHT as a mapping target after upgrading to 1.3.0. Root: 1.3.0 introduced predefined device types (keyboard/mouse/gamepad) and mouse-button outputs are only shown when "mouse" is selected as the output device. UI change not documented; user confusion.
+
+i269 | - | kind:feature-request layer:install cause:doc-gap cause:distro-compat de_os:fedora outcome:fixed pr_potential:docs-fix conf:stated depth=full | python3-devel not mentioned in pip install instructions for Fedora. Maintainer added the note to the README.
+
+i270 | - | kind:question layer:mapping cause:symbol-mapping cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | BTN_BACK and BTN_FORWARD do nothing for browser navigation. Root: naming in input-event-codes.h is confusing; BTN_SIDE and BTN_EXTRA are what browsers actually use for back/forward. Docs gap: add a note that BTN_BACK/FORWARD may not work as expected.
+
+i274 | - | kind:bug layer:daemon layer:device cause:autoload-failure cause:race-condition component:service de_os:ubuntu de_os:gnome device_type:mouse outcome:workaround pr_potential:needs-design conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Logitech MX Anywhere 2 Bluetooth: autoload doesn't work after reboot on Ubuntu. Multiple reporters. Root: udev rule fires with empty DEVNAME for Bluetooth devices; service doesn't find device at the provided path. Workaround: delayed autostart via .desktop sleep. Maintainer noted TODOs: autoload without DEVNAME, retry device path lookup.
+
+i276 | - | kind:bug layer:injector layer:macro cause:race-condition component:macros device_type:gamepad outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Razer Tartarus Pro: injection crashes with "tuple has no attribute press_trigger" when rapidly pressing mapped keys. Race condition in keycode_mapper: macro object was replaced by a tuple during press handling. Fixed in PR #277.
+
+i278 | - | kind:bug layer:install cause:python-version component:gui-app de_os:ubuntu outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | App crashed with keyword argument error after checking out main branch on Ubuntu 21.10. Root: jonasBoss added `slots=True` to a dataclass which requires Python ≥3.10; Ubuntu ships 3.8. Fixed by removing the slots argument.
+
+i281 | - | kind:bug layer:install cause:python-version cause:distro-compat component:service de_os:ubuntu outcome:workaround pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | pyenv Python installation: service cannot import input-remapper because pyenv paths are user-local, inaccessible by root systemd service. Root: pyenv is incompatible with root systemd services. Workaround: install the .deb from releases.
+
+i282 | - | kind:bug layer:injector cause:de-compat cause:evdev-api component:injector de_os:gnome outcome:workaround pr_potential:upstream-dep conf:inferred impact:partial-remap symptom:mapping-not-working depth=full | Scroll events from mapped keys blocked by libinput when mouse cursor is moving simultaneously. Works in Firefox (GTK) but not in GNOME Shell apps (Qt/non-GTK). Root: libinput likely filters scroll events paired with pointer movement as accidental. Workaround: xdotool scroll or wrapping the mapping via xdotool.
+
+i283 | - | kind:meta cause:distro-compat component:ci-build outcome:fixed pr_potential:unknown conf:inferred depth=full | Reminder to add pydantic to AUR, README, and deb dependencies after its addition to the codebase.
