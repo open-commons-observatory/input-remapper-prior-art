@@ -1,0 +1,27 @@
+# Round 8: issues #107-#123 (12 issues), dates 2021-04-27 to 2021-06-07
+# Method: fullfetch per-round + readfull --q 350 --users 100 --min 60 --cap 550
+# All depth=full; tags manual.
+
+i107 | - | kind:bug layer:daemon cause:autoload-failure component:service de_os:arch de_os:gnome outcome:fixed pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | Autoload not working on Arch+GNOME 40 after reboot (0.8.1). Multiple debug rounds; root cause was a race: udev-triggered autoload fired before user session was ready. Maintainer found and pushed fix. Pattern: autoload timing on login continues to be fragile.
+
+i109 | - | kind:feature-request layer:gui layer:macro cause:missing-feature component:gui-app component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Macro editor: multiline editor with syntax highlighting, autocompletion, line numbers, comments support. Major UI design discussion with jonasBoss. Implemented in only-the-advanced-editor branch using GtkSourceView4. Eventually merged to main. GtkSourceView4 added as a dependency.
+
+i110 | - | kind:question layer:device cause:doc-gap device_type:mouse outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | xinput properties (acceleration, transformation matrix) stopped working after applying a key-mapper preset because device ID changes. Same pattern as #24: key-mapper creates new virtual devices. Workaround: use new mapped/forwarded device IDs. Plugin support would make this automatic.
+
+i112 | - | kind:feature-request layer:mapping cause:missing-feature component:injector device_type:mouse outcome:open pr_potential:code-fix conf:inferred depth=full | Cannot map extra mouse buttons to BTN_MIDDLE or other mouse buttons in the GUI dropdown. The GUI did not show mouse button outputs as valid targets. PR potential: add mouse button output options to the mapping target list.
+
+i114 | - | kind:bug layer:mapping cause:x11-issue cause:wayland-issue component:keycodes de_os:kde de_os:wayland outcome:open pr_potential:needs-design conf:stated depth=full | ~/.Xmodmap interferes with key-mapper on Wayland in KDE Plasma: key-mapper uses xmodmap -pke to build the key name list, which is wrong when Xmodmap has been applied. On Wayland the Xmodmap file has no effect but xmodmap -pke still shows its values. Need to detect Wayland+KDE and use a different key lookup method.
+
+i115 | - | kind:feature-request layer:permissions cause:missing-feature outcome:open pr_potential:needs-design conf:stated depth=full | Add polkit rules note to README so users can skip the password prompt. Maintainer noted security concern (root access without auth = keylogger risk). Commenter noted it's similar to NOPASSWD in sudoers. Not implemented.
+
+i116 | - | kind:feature-request layer:daemon cause:missing-feature component:service outcome:open pr_potential:code-fix conf:inferred depth=full | Desktop notification when a device is mapped/unmapped. Maintainer noted it might be possible via gi/GNOME Notify from the udev handler. Still open.
+
+i117 | - | kind:bug layer:permissions cause:de-compat cause:permission component:gui-app de_os:arch de_os:wayland outcome:workaround pr_potential:docs-fix conf:stated impact:install-blocked symptom:daemon-not-starting depth=full | Sway/Wayland on Arch: no graphical polkit agent installed so key-mapper-gtk pkexec fails silently. Workaround: sudo -E input-remapper-gtk. Docs gap: mention graphical polkit agent requirement for Wayland/Sway.
+
+i118 | - | kind:question layer:reader cause:doc-gap cause:device-quirk device_type:mouse outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | PostmarketOS phone: trying to use touchscreen tap as BTN_LEFT for key-mapper capture. Restore Defaults button greyed out. Maintainer helped debug but ultimately phone environment (Phosh, uinput availability) outside supported scope.
+
+i120 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:fixed pr_potential:unknown conf:stated depth=full | Tap-vs-hold binding: tap sends one key, hold sends another. Maintainer prototyped complex set/ifeq workaround. Eventually implemented cleanly as if_tap macro function and released.
+
+i122 | - | kind:support layer:daemon layer:permissions cause:distro-compat cause:permission component:service de_os:openrc outcome:workaround pr_potential:docs-fix conf:stated impact:install-blocked symptom:daemon-not-starting depth=full | PostmarketOS (non-systemd): rc-service could not find key-mapper. Root: key-mapper's D-Bus setup assumes systemd. Workaround: sudo key-mapper-service -d. Also: uinput module not loaded on phone; modprobe uinput fixed injection. Maintainer noted modprobe uinput could be part of service startup.
+
+i123 | - | kind:bug layer:gui layer:config cause:config-error cause:ui-logic component:gui-app outcome:workaround pr_potential:docs-fix conf:stated impact:partial-remap depth=full | Two identical joysticks (Thrustmaster T.16000M) share the same preset files. User confused that selecting device 2 shows device 1's mappings. Maintainer explained design: presets shared by model, different mappings via separate preset names. Workaround: use Copy to create a separate preset for each.
