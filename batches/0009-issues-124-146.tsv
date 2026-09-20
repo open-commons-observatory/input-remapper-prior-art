@@ -1,0 +1,27 @@
+# Round 9: issues #124-#146 (12 issues), dates 2021-06-08 to 2021-07-15
+# Method: fullfetch per-round + readfull --q 350 --users 100 --min 60 --cap 550
+# All depth=full; tags manual.
+
+i124 | - | kind:feature-request layer:device layer:injector cause:missing-feature cause:wayland-issue device_type:mouse outcome:open pr_potential:needs-design conf:stated depth=full | Trackball scroll-wheel emulation: gsettings scroll-wheel-emulation-button not compatible with key-mapper virtual devices on Wayland. Root: gsettings applies to physical devices, not to key-mapper's virtual forwarded device. Beta RelToRelHandler is a future solution.
+
+i125 | - | kind:support layer:permissions layer:injector cause:permission cause:distro-compat component:service de_os:openrc outcome:workaround pr_potential:unknown conf:stated impact:broken-remap symptom:mapping-not-working depth=full | PostmarketOS continuation: cursor not moving because the phone has no EV_REL-capable device after injection. Maintainer confirmed this is outside scope; user eventually resolved partial functionality.
+
+i126 | - | kind:question layer:mapping layer:injector cause:doc-gap cause:x11-issue outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | ctrl+hjkl as arrow keys fails because ctrl modifier state is passed through to injected keys (ctrl+left = word-skip). Solution: also disable ctrl_l in the mapping or map it to ctrl_l with combination disabled. X11/DE interprets injected key + held ctrl as ctrl+key.
+
+i128 | - | kind:bug layer:injector cause:unknown cause:de-compat de_os:gnome outcome:open pr_potential:upstream-dep conf:inferred impact:perf depth=full | Frame drops for a few seconds after switching presets via xdotool script on X11. Events appear correct in evtest so key-mapper is working; the freeze is in the X11/GNOME layer. Maintainer acknowledged but cannot debug X11 internals. Works fine in fullscreen; windowed Wine games affected.
+
+i131 | - | kind:bug layer:injector cause:de-compat de_os:gnome outcome:open pr_potential:upstream-dep conf:inferred impact:broken-remap symptom:mapping-not-working depth=full | After applying a preset, all unmapped keys stop producing output in the DE (though evtest shows events from the forwarded device). Maintainer created "environment incompatibility" label; root cause in GNOME/X11, not key-mapper. Intermittent.
+
+i135 | - | kind:question layer:mapping cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to find valid mapping targets (key names, modifiers). Maintainer pointed to --symbol-names CLI and usage.md. User suggestion: link to this from the GUI. Doc gap: key names section hard to find in README.
+
+i136 | - | kind:feature-request layer:gui cause:missing-feature component:gui-app outcome:open pr_potential:code-fix conf:inferred depth=full | Configure output key by pressing it on any device (instead of typing the name). E.g. click mapping column then press Ctrl+A on keyboard to enter "Control_L + a". Depends on #109 macro editor.
+
+i140 | - | kind:bug layer:device layer:daemon cause:autoload-failure cause:de-compat component:service de_os:gnome de_os:ubuntu outcome:workaround pr_potential:needs-design conf:stated impact:broken-remap symptom:mapping-not-working depth=full | External USB devices freeze in GNOME after key-mapper restarts injection (e.g. on USB hub reconnect). evtest shows events being written correctly; GNOME stops accepting them. Autoload via udev rule may fire too quickly before devices are ready. Workaround: delay autoload by a few seconds. Long-running issue affecting USB KVM users.
+
+i142 | - | kind:bug layer:install cause:distro-compat component:ci-build de_os:arch outcome:fixed pr_potential:unknown conf:stated impact:install-blocked symptom:install-fail depth=full | AUR install failed due to invalid PO translation file syntax (it_IT.po). Fixed via PR #143.
+
+i144 | - | kind:bug layer:injector cause:de-compat de_os:kde outcome:open pr_potential:upstream-dep conf:inferred impact:partial-remap symptom:mapping-not-working depth=full | Kubuntu+KDE: scroll events from key-mapper virtual device don't change scroll focus in apps unless the pane was explicitly clicked first. Works on physical device. Likely a KDE/Qt behavior: focus-follows-hover only for native devices, not virtual uinput. Not reproducible by maintainer on GNOME. Environment incompatibility.
+
+i145 | - | kind:bug layer:mapping cause:de-compat cause:x11-issue outcome:open pr_potential:upstream-dep conf:inferred impact:partial-remap depth=full | ~/.XCompose rules ignored while key-mapper daemon is active. Root: XCompose applies to specific X11 device IDs; key-mapper's virtual injection device gets a new ID not covered by XCompose config. Same pattern as xinput device ID changes.
+
+i146 | - | kind:feature-request layer:mapping cause:missing-feature cause:wayland-issue outcome:wontfix pr_potential:wontfix conf:stated depth=full | Per-application preset switching. Standard answer (sixth time seen): not possible on Wayland, Wayland hides window focus. Maintainer linked to the same discussions (#20, #32, #50, #56).
