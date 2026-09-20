@@ -1,0 +1,27 @@
+# Round 10: issues #147-#162 (12 issues), dates 2021-07-17 to 2021-08-13
+# Method: fullfetch per-round + readfull --q 350 --users 100 --min 60 --cap 550
+# All depth=full; tags manual.
+
+i147 | - | kind:meta cause:de-compat outcome:open pr_potential:needs-design conf:inferred depth=full | Meta issue: maintainer asking for help from X/GNOME/Wayland/KDE internals experts. Lists all known environment-incompatibility problems that are in the DE's territory. Confirms a cluster of issues maintainer cannot fix without external expertise.
+
+i148 | - | kind:bug layer:reader cause:device-quirk component:reader device_type:mouse outcome:wontfix pr_potential:upstream-dep conf:stated impact:broken-remap symptom:device-not-detected depth=full | Razer DeathAdder Elite: middle mouse button eventually worked; DPI buttons have no evdev events (firmware-level feature). Same wontfix pattern as Hypershift.
+
+i150 | - | kind:bug layer:install cause:distro-compat component:ci-build de_os:ubuntu outcome:fixed pr_potential:unknown conf:inferred impact:install-blocked symptom:install-fail depth=full | gettext dependency missing in Ubuntu/Debian build. Fixed (brief report).
+
+i151 | - | kind:question layer:macro cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Cross-device macro syntax confusion: user did not understand that "foo/bar" in examples are variable placeholders. Also: set+ifeq only works in version ≥0.8.1; user on old version. Docs gap: clarify macro variable placeholder naming convention.
+
+i152 | - | kind:bug layer:injector cause:de-compat cause:x11-issue de_os:gnome outcome:open pr_potential:upstream-dep conf:inferred impact:partial-remap depth=full | Applying a preset changes the keyboard layout to German on a US+German locale system. Root: X11/GNOME assigns a keyboard layout to the new virtual uinput device based on system locale; key-mapper has no control over which layout is applied to its virtual device.
+
+i153 | - | kind:question layer:macro cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | How to do autofire (hold key = repeat output). Answer: h(k(space)). Self-answered. Docs gap in the macro README.
+
+i154 | - | kind:bug layer:daemon cause:autoload-failure component:service de_os:fedora outcome:unknown pr_potential:unknown conf:inferred impact:broken-remap symptom:mapping-not-working depth=full | Autoload not working on startup; Razer Tartarus. Device path mixed up at login (NVidia device in event6 conflicting). Eventually resolved on its own; suspicion of a timing issue. Pattern: device paths assigned differently at boot vs login on some systems.
+
+i155 | - | kind:question layer:mapping cause:doc-gap cause:x11-issue outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Modifier key used in combination source leaks through to output (Alt+j mapped to Down, but Alt is still held → Alt+Down in browser). Documented behavior: must also disable or remap the modifier key. Docs gap: combination side-effects not prominent enough.
+
+i159 | - | kind:question layer:macro layer:combination cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | Combination release fires the base key even when a chord was used (fn3 → BTN_MIDDLE fires on fn3 release regardless). Maintainer explained this is expected: combination does not consume the base key's release. Docs gap: combination release behavior not documented.
+
+i160 | - | kind:feature-request layer:macro cause:missing-feature component:macros outcome:open pr_potential:code-fix conf:stated depth=full | LED control in macros (Num/Caps/Scroll lock LEDs). Maintainer left design notes; contributor started working on it via EV_LED injection. PR in progress on a branch. Contributor ran into asyncio complexity.
+
+i161 | - | kind:question layer:daemon cause:doc-gap outcome:docs-answer pr_potential:docs-fix conf:stated depth=full | key-mapper-control --command start not discovered; user didn't know --command start preset_name syntax. Eventually wanted per-game preset loading (per-app, wontfix on Wayland). Self-resolved via docs.
+
+i162 | - | kind:bug layer:macro cause:macro-logic cause:de-compat component:macros outcome:workaround pr_potential:docs-fix conf:stated impact:partial-remap symptom:mapping-not-working depth=full | h(k(BTN_MOUSE)) fires clicks too fast; environment batches them so only one click is perceived. Workaround: h(k(BTN_MOUSE).w(500)) adds a delay. Environment coalesces rapid mouse button events. Docs gap: add w() delay note to autofire examples.
